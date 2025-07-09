@@ -84,6 +84,8 @@ export const SideNavLinks = ({ locale }: { locale: string }) => {
       config={gtConfig}
       loadTranslations={loadTranslations}
       locale={locale}
+      projectId={import.meta.env.PUBLIC_VITE_GT_PROJECT_ID}
+      devApiKey={import.meta.env.PUBLIC_VITE_GT_API_KEY}
     >
       <SideNavLinksContent />
     </GTProvider>
