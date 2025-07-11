@@ -26,9 +26,10 @@ const releaseLink = `https://github.com/daytonaio/daytona/releases/tag/v${releas
       >
     </p>
     <p>
-      <Fragment set:html={textArrowIcon} />{
-        Astro.props.labels['footer.latestUpdates']
-      } - <a href="https://github.com/daytonaio/sdk/commits/main/"
+      <Fragment
+        set:html={textArrowIcon}
+      />Astro.props.labels['footer.latestUpdates'] - <a
+        href="https://github.com/daytonaio/daytona/commits/main/"
         >{Astro.props.labels['footer.viewChangelog']}</a
       >
     </p>
@@ -50,7 +51,7 @@ const releaseLink = `https://github.com/daytonaio/daytona/releases/tag/v${releas
     <ThemeSelect />
 
     <div class="menu-list">
-      <a href="https://www.daytona.io/company/privacy-policys"
+      <a href="https://www.daytona.io/company/privacy-policy"
         >{Astro.props.labels['footer.privacyPolicy']}</a
       >
       <a href="https://www.daytona.io/company/terms-of-service"
