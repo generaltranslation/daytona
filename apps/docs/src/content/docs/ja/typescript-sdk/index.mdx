@@ -28,16 +28,16 @@ Daytona TypeScript SDKを使い始めるのに役立つ簡単な例をご紹介�
 import { Daytona } from '@daytonaio/sdk'
 
 async function main() {
-  // Initialize the SDK (uses environment variables by default)
+  // SDKを初期化（デフォルトで環境変数を使用）
   const daytona = new Daytona()
 
-  // Create a new sandbox
+  // 新しいサンドボックスを作成
   const sandbox = await daytona.create({
     language: 'typescript',
     envVars: { NODE_ENV: 'development' },
   })
 
-  // Execute a command
+  // コマンドを実行
   const response = await sandbox.process.executeCommand('echo "Hello, World!"')
   console.log(response.result)
 }
@@ -52,10 +52,10 @@ SDKは環境変数を使用するか、コンストラクタにオプション�
 ```typescript
 import { Daytona } from '@daytonaio/sdk';
 
-// Using environment variables (DAYTONA_API_KEY, DAYTONA_API_URL, DAYTONA_TARGET)
+// 環境変数を使用（DAYTONA_API_KEY、DAYTONA_API_URL、DAYTONA_TARGET）
 const daytona = new Daytona();
 
-// Using explicit configuration
+// 明示的な設定を使用
 const daytona = new Daytona({
   apiKey: 'your-api-key',
   apiUrl: 'https://app.daytona.io/api',

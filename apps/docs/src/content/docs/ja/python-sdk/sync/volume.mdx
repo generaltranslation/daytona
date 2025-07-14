@@ -9,7 +9,7 @@ hideTitleOnPage: true
 class Volume(VolumeDto)
 ```
 
-SandboxのためのShared Storageボリュームである、Daytona Volumeを表します。
+SandboxesのためのShared Storageボリュームである、Daytona Volumeを表します。
 
 **属性**:
 
@@ -38,12 +38,12 @@ def list() -> List[Volume]
 
 すべてのVolumeを一覧表示します。
 
-**Returns**:
+**戻り値**:
 
 - `List[Volume]` - すべてのVolumeのリスト。
   
 
-**Example**:
+**例**:
 
 ```python
 daytona = Daytona()
@@ -60,18 +60,18 @@ def get(name: str, create: bool = False) -> Volume
 
 名前でVolumeを取得します。
 
-**Arguments**:
+**引数**:
 
 - `name` _str_ - 取得するVolumeの名前。
 - `create` _bool_ - Trueの場合、存在しない場合は新しいVolumeを作成します。
   
 
-**Returns**:
+**戻り値**:
 
 - `Volume` - Volumeオブジェクト。
   
 
-**Example**:
+**例**:
 
 ```python
 daytona = Daytona()
@@ -87,17 +87,17 @@ def create(name: str) -> Volume
 
 新しいVolumeを作成します。
 
-**Arguments**:
+**引数**:
 
 - `name` _str_ - 作成するVolumeの名前。
   
 
-**Returns**:
+**戻り値**:
 
 - `Volume` - Volumeオブジェクト。
   
 
-**Example**:
+**例**:
 
 ```python
 daytona = Daytona()
@@ -113,12 +113,12 @@ def delete(volume: Volume) -> None
 
 Volumeを削除します。
 
-**Arguments**:
+**引数**:
 
 - `volume` _Volume_ - 削除するVolume。
   
 
-**Example**:
+**例**:
 
 ```python
 daytona = Daytona()

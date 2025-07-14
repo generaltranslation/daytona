@@ -197,7 +197,7 @@ daytona server configure
 
 ```text  
 Providers Directory
-Directory will be created if it does not exist
+ディレクトリが存在しない場合は作成されます
 > /Users/Library/Application Support/daytona/providers
 
 Providers Directory
@@ -216,15 +216,15 @@ Default Project User
 > daytona
 
 Builder Image
-Image dependencies: docker, @devcontainers/cli (node package)
+イメージの依存関係: docker, @devcontainers/cli (nodeパッケージ)
 > daytonaio/workspace-project:latest
 
 Builder Registry
-To add options, add a container registry with 'daytona cr set'
-> Local registry managed by Daytona
+オプションを追加するには、'daytona cr set'でコンテナレジストリを追加してください
+> DaytonaによってローカルレジストリがManaged
 
 Build Image Namespace
-Namespace to be used when tagging and pushing build images
+ビルドイメージのタグ付けとプッシュ時に使用されるネームスペース
 >
 
 Local Builder Registry Port
@@ -240,11 +240,11 @@ Headscale Port
 > 3987
 
 Binaries Path
-Directory will be created if it does not exist
+ディレクトリが存在しない場合は作成されます
 > /Users/Library/Application Support/daytona/server/binaries
 
 Log File Path
-File will be created if it does not exist
+ファイルが存在しない場合は作成されます
 > /Users/Library/Application Support/daytona/server/daytona.log
 
 Frps Domain
@@ -257,10 +257,10 @@ Frps Protocol
 > https
 ```
 
-設定が正常に完了すると、Daytonaは設定を検証し、指定されたすべてのディレクトリとファイルが正しく設定されていることを確認し、サーバーを最適な動作のために準備します。
+設定が正常に完了すると、Daytonaは設定を検証し、指定されたすべてのディレクトリとファイルが正しく設定されていることを確認し、最適な動作のためにサーバーを準備します。
 
 ```text
-Server configuration updated. You need to restart the server for the changes to take effect.
+サーバー設定が更新されました。変更を有効にするにはサーバーを再起動する必要があります。
 ```
 
 変更を有効にするには、`daytona server restart`コマンドを使用してサーバーを再起動してください。
@@ -292,5 +292,5 @@ daytona server stop
 このコマンドを実行すると、DaytonaはDaytonaサーバーデーモンを停止します。
 
 ```text
-Stopping the Daytona Server daemon...
+Daytona Server daemonを停止しています...
 ```

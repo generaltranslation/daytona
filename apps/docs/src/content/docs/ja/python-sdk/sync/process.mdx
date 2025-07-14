@@ -61,14 +61,14 @@ Sandbox内でシェルコマンドを実行します。
 **例**:
 
 ```python
-# 簡単なコマンド
+# シンプルなコマンド
 response = sandbox.process.exec("echo 'Hello'")
 print(response.artifacts.stdout)  # 出力: Hello
 
 # 作業ディレクトリを指定したコマンド
 result = sandbox.process.exec("ls", cwd="workspace/src")
 
-# タイムアウト付きコマンド
+# タイムアウトを指定したコマンド
 result = sandbox.process.exec("sleep 10", timeout=5)
 ```
 

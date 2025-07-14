@@ -7,15 +7,15 @@ title: ログストリーミング
 Daytona SDKは以下の両方をサポートしています：
 
 - `ログスナップショットの取得` — 特定の時点までのすべてのログを取得します。
-- `ログストリーミング` — プロセスがまだ実行中の間、ログが生成されるのと同時にストリーミングします。
+- `ログストリーミング` — プロセスがまだ実行中の間、生成されるログをストリーミングします。
 
 このガイドでは、非同期モードと同期モードの両方でログストリーミングを使用する方法について説明します。
-リアルタイムストリーミングは、**デバッグ**、**監視**、または**可観測性ツール**との統合に特に有用です。
+リアルタイムストリーミングは、**デバッグ**、**モニタリング**、または**可観測性ツール**との統合に特に有用です。
 
 ## 非同期
 
 サンドボックス化されたプロセスがより大きなシステムの一部であり、長期間（または無期限に）実行されることが期待される場合、
-システムの残りの部分が実行を続けている間に、ログを**バックグラウンドで**非同期に処理することができます。
+システムの残りの部分が実行を続けている間に、**バックグラウンドで**ログを非同期に処理することができます。
 
 これは以下の場合に理想的です：
 
@@ -53,16 +53,16 @@ sandbox = daytona.create()
             )
         )
 
-        print("Continuing execution while logs are streaming...")
+        print("ログがストリーミングされている間に実行を継続しています...")
         await asyncio.sleep(1)
-        print("Other operations completed!")
+        print("その他の操作が完了しました！")
 
-        print("At the end wait for any asynchronous task to complete and clean up resources...")
+        print("最後に非同期タスクの完了を待ち、リソースをクリーンアップします...")
         await logs_task
     except Exception as e:
-        print(f"Error: {e}")
+        print(f"エラー: {e}")
     finally:
-        print("Cleaning up sandbox...")
+        print("サンドボックスをクリーンアップしています...")
         sandbox.delete()
 
 if **name** == "**main**":
@@ -88,19 +88,19 @@ asyncio.run(main())
       })
 
       const logTask = sandbox.process.getSessionCommandLogs(sessionId, command.cmdId!, (chunk) => {
-        console.log('Log chunk:', chunk)
+        console.log('ログチャンク:', chunk)
       })
 
-      console.log('Continuing execution while logs are streaming...')
+      console.log('ログがストリーミングされている間に実行を継続しています...')
       sleep(1)
-      console.log('Other operations completed!')
+      console.log('その他の操作が完了しました！')
 
-      console.log('At the end wait for any asynchronous task to complete and clean up resources...')
+      console.log('最後に非同期タスクの完了を待ち、リソースをクリーンアップします...')
       await logTask
     } catch (error) {
-      console.error('Error:', error)
+      console.error('エラー:', error)
     } finally {
-      console.log('Cleaning up sandbox...')
+      console.log('サンドボックスをクリーンアップしています...')
       await sandbox.delete()
     }
   }
@@ -113,7 +113,8 @@ asyncio.run(main())
 
 ## 同期処理
 
-コマンドの実行時間が予測可能な場合、またはバックグラウンドで実行する必要がない場合は、ログストリームを同期的に処理できます。例えば、ログをファイルや他のストレージに書き込むことができます。
+コマンドの実行時間が予測可能な場合、またはバックグラウンドで実行する必要がない場合は、
+ログストリームを同期的に処理できます。例えば、ログをファイルや他のストレージに書き込むことができます。
 
 <Tabs syncKey="language">
   <TabItem label="Python" icon="seti:python">
@@ -143,9 +144,9 @@ sandbox = daytona.create()
 
           with open(log_file_path, "w") as log_file:
               def handle_chunk(chunk: str):
-                  #  remove null bytes
+                  # null バイトを削除
                   clean_chunk = chunk.replace("\x00", "")
-                  #  write to file
+                  # ファイルに書き込み
                   log_file.write(clean_chunk)
                   log_file.flush()
 

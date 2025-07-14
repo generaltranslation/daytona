@@ -102,7 +102,9 @@ const params: CreateSandboxFromSnapshotParams = {
         NODE_ENV: 'development',
         DEBUG: 'true'
     },
-    autoStopInterval: 60
+    autoStopInterval: 60,
+    autoArchiveInterval: 60,
+    autoDeleteInterval: 120
 };
 const sandbox = await daytona.create(params, { timeout: 100 });
 ```
@@ -149,7 +151,9 @@ const params: CreateSandboxFromImageParams = {
         cpu: 2,
         memory: 4 // 4GB RAM
     },
-    autoStopInterval: 60
+    autoStopInterval: 60,
+    autoArchiveInterval: 60,
+    autoDeleteInterval: 120
 };
 const sandbox = await daytona.create(params, { timeout: 100, onSnapshotCreateLogs: console.log });
 ```
@@ -241,7 +245,7 @@ console.log(`Sandbox state: ${sandbox.state}`);
 list(labels?: Record<string, string>): Promise<Sandbox[]>
 ```
 
-ラベルでフィルタリングされたすべてのSandboxをリストします。
+ラベルでフィルタリングされたすべてのSandboxを一覧表示します。
 
 **パラメータ**:
 
@@ -274,7 +278,7 @@ Sandboxを開始し、準備完了まで待機します。
 **パラメータ**:
 
 - `sandbox` _Sandbox_ - 開始するSandbox
-- `timeout?` _number_ - オプションのタイムアウト（秒）（0はタイムアウトなしを意味します）
+- `timeout?` _number_ - オプションのタイムアウト（秒単位、0は無制限を意味します）
 
 
 **戻り値**:
@@ -331,8 +335,9 @@ await daytona.stop(sandbox);
 **プロパティ**:
 
 - `autoArchiveInterval?` _number_ - 自動アーカイブ間隔（分単位）（0は最大間隔が使用されることを意味します）。デフォルトは7日です。
+- `autoDeleteInterval?` _number_ - 自動削除間隔（分単位）（負の値は無効を意味し、0は停止時に即座に削除することを意味します）。デフォルトでは、自動削除は無効です。
 - `autoStopInterval?` _number_ - 自動停止間隔（分単位）（0は無効を意味します）。デフォルトは15分です。
-- `envVars?` _Record\<string, string\>_ - Sandboxに設定するオプションの環境変数
+- `envVars?` _Record\<string, string\>_ - Sandboxで設定するオプションの環境変数
 - `labels?` _Record\<string, string\>_ - Sandboxラベル
 - `language?` _string_ - 直接コード実行のためのプログラミング言語
 - `public?` _boolean_ - Sandboxポートプレビューが公開されているか
@@ -345,6 +350,7 @@ await daytona.stop(sandbox);
 **プロパティ**:
 
 - `autoArchiveInterval?` _number_
+- `autoDeleteInterval?` _number_
 - `autoStopInterval?` _number_
 - `envVars?` _Record\<string, string\>_
 - `image` _string \| Image_ - Sandboxに使用するカスタムDockerイメージ。Imageオブジェクトが提供された場合、
@@ -363,6 +369,7 @@ await daytona.stop(sandbox);
 **プロパティ**:
 
 - `autoArchiveInterval?` _number_
+- `autoDeleteInterval?` _number_
 - `autoStopInterval?` _number_
 - `envVars?` _Record\<string, string\>_
 - `labels?` _Record\<string, string\>_

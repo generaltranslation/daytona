@@ -40,7 +40,7 @@ async def create_folder(path: str, mode: str) -> None
 **引数**:
 
 - `path` _str_ - フォルダを作成するパス。相対パスはユーザーのルートディレクトリを基準に解決されます。
-- `mode` _str_ - 8進数形式のフォルダ権限（例：「755」はrwxr-xr-x）。
+- `mode` _str_ - 8進形式でのフォルダ権限（例：「755」はrwxr-xr-x）。
   
 
 **例**:
@@ -82,7 +82,7 @@ async def download_file(remote_path: str, timeout: int = 30 * 60) -> bytes
 ```
 
 Sandboxからファイルをダウンロードします。ファイルの内容をbytesオブジェクトとして返します。
-このメソッドは、ファイルをディスクに保存せずにメモリに読み込みたい場合に便利です。
+このメソッドは、ディスクに保存せずにファイルをメモリに読み込みたい場合に便利です。
 小さなファイルにのみ使用できます。
 
 **引数**:
@@ -134,7 +134,7 @@ Sandboxからファイルをダウンロードし、ストリームを使用し�
 local_path = "local_copy.txt"
 await sandbox.fs.download_file("tmp/large_file.txt", local_path)
 size_mb = os.path.getsize(local_path) / 1024 / 1024
-print(f"Size of the downloaded file {local_path}: {size_mb} MB")
+print(f"ダウンロードしたファイル {local_path} のサイズ: {size_mb} MB")
 ```
 
 #### AsyncFileSystem.find\_files
@@ -165,7 +165,7 @@ grepコマンドと同様に、パターンを含むファイルを検索しま�
 **例**:
 
 ```python
-# Search for TODOs in Python files
+# PythonファイルでTODOを検索
 matches = await sandbox.fs.find_files("workspace/src", "TODO:")
 for match in matches:
     print(f"{match.file}:{match.line}: {match.content.strip()}")
@@ -202,13 +202,13 @@ async def get_file_info(path: str) -> FileInfo
 **例**:
 
 ```python
-# Get file metadata
+# ファイルメタデータを取得
 info = await sandbox.fs.get_file_info("workspace/data/file.txt")
 print(f"Size: {info.size} bytes")
 print(f"Modified: {info.mod_time}")
 print(f"Mode: {info.mode}")
 
-# Check if path is a directory
+# パスがディレクトリかどうかを確認
 info = await sandbox.fs.get_file_info("workspace/data")
 if info.is_dir:
     print("Path is a directory")
@@ -238,15 +238,15 @@ async def list_files(path: str) -> List[FileInfo]
 **例**:
 
 ```python
-# List directory contents
+# ディレクトリの内容をリスト
 files = await sandbox.fs.list_files("workspace/data")
 
-# Print files and their sizes
+# ファイルとそのサイズを出力
 for file in files:
     if not file.is_dir:
         print(f"{file.name}: {file.size} bytes")
 
-# List only directories
+# ディレクトリのみをリスト
 dirs = [f for f in files if f.is_dir]
 print("Subdirectories:", ", ".join(d.name for d in dirs))
 ```
@@ -271,19 +271,19 @@ async def move_files(source: str, destination: str) -> None
 **例**:
 
 ```python
-# Rename a file
+# ファイルの名前を変更
 await sandbox.fs.move_files(
     "workspace/data/old_name.txt",
     "workspace/data/new_name.txt"
 )
 
-# Move a file to a different directory
+# ファイルを別のディレクトリに移動
 await sandbox.fs.move_files(
     "workspace/data/file.txt",
     "workspace/archive/file.txt"
 )
 
-# Move a directory
+# ディレクトリを移動
 await sandbox.fs.move_files(
     "workspace/old_dir",
     "workspace/new_dir"

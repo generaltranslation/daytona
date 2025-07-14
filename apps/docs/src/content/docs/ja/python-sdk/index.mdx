@@ -24,7 +24,7 @@ poetry add daytona
 
 ## はじめに
 
-Daytona Python SDKを使い始めるための簡単な例をご紹介します：
+Daytona Python SDKを使い始めるのに役立つ簡単な例をご紹介します：
 
 <Tabs>
 <TabItem label="Sync" icon="seti:python">
@@ -33,13 +33,13 @@ Daytona Python SDKを使い始めるための簡単な例をご紹介します�
 from daytona import Daytona
 
 def main():
-    # Initialize the SDK (uses environment variables by default)
+    # SDKを初期化（デフォルトで環境変数を使用）
     daytona = Daytona()
 
-    # Create a new sandbox
+    # 新しいサンドボックスを作成
     sandbox = daytona.create()
 
-    # Execute a command
+    # コマンドを実行
     response = sandbox.process.exec("echo 'Hello, World!'")
     print(response.result)
 
@@ -55,12 +55,12 @@ import asyncio
 from daytona import AsyncDaytona
 
 async def main():
-    # Initialize the SDK (uses environment variables by default)
+    # SDKを初期化（デフォルトで環境変数を使用）
     async with AsyncDaytona() as daytona:
-        # Create a new sandbox
+        # 新しいサンドボックスを作成
         sandbox = await daytona.create()
 
-        # Execute a command
+        # コマンドを実行
         response = await sandbox.process.exec("echo 'Hello, World!'")
         print(response.result)
 
@@ -81,10 +81,10 @@ SDKは環境変数を使用するか、コンストラクタにオプション�
 ```python
 from daytona import Daytona, DaytonaConfig
 
-# Using environment variables (DAYTONA_API_KEY, DAYTONA_API_URL, DAYTONA_TARGET)
+# 環境変数を使用 (DAYTONA_API_KEY, DAYTONA_API_URL, DAYTONA_TARGET)
 daytona = Daytona()
 
-# Using explicit configuration
+# 明示的な設定を使用
 config = DaytonaConfig(
     api_key="your-api-key",
     api_url="https://app.daytona.io/api",
@@ -102,21 +102,21 @@ from daytona import AsyncDaytona, DaytonaConfig
 
 async def main():
     try:
-        # Using environment variables (DAYTONA_API_KEY, DAYTONA_API_URL, DAYTONA_TARGET)
+        # 環境変数を使用 (DAYTONA_API_KEY, DAYTONA_API_URL, DAYTONA_TARGET)
         daytona = AsyncDaytona()
-        # Your async code here
+        # 非同期コードをここに記述
         pass
     finally:
         await daytona.close()
 
-    # Using explicit configuration
+    # 明示的な設定を使用
     config = DaytonaConfig(
         api_key="your-api-key",
         api_url="https://app.daytona.io/api",
         target="us"
     )
     async with AsyncDaytona(config) as daytona:
-        # Your code here
+        # コードをここに記述
         pass
 
 if __name__ == "__main__":

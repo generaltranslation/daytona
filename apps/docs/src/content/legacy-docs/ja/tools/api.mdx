@@ -326,13 +326,13 @@ Git プロバイダーを検索
 
 ## DELETE /gitprovider/\{gitProviderId\}
 
-Gitプロバイダーを削除
+Git プロバイダーを削除
 
 ### パラメータ
 
 | 名前 | 場所 | 必須 | 型 | 説明 |
 | :--- | :------- | :------- | :--- | :---------- |
-| **`gitProviderId`** | path | true | string | Gitプロバイダー |
+| **`gitProviderId`** | path | true | string | Git プロバイダー |
 
 ### レスポンス
 
@@ -422,10 +422,10 @@ GitリポジトリのPRを取得
 | 名前 | 場所 | 必須 | 型 | 説明 |
 | :--- | :------- | :------- | :--- | :---------- |
 | **`gitProviderId`** | path | true | string | Gitプロバイダー |
-| **`namespaceId`** | path | true | string | 名前空間 |
+| **`namespaceId`** | path | true | string | ネームスペース |
 | **`repositoryId`** | path | true | string | リポジトリ |
 | **`page`** | query | undefined | integer | ページ番号 |
-| **`per_page`** | query | undefined | integer | 1ページあたりのアイテム数 |
+| **`per_page`** | query | undefined | integer | ページあたりのアイテム数 |
 
 ### レスポンス
 
@@ -891,15 +891,15 @@ GitリポジトリのPRを取得
 
 ターゲットを再起動
 
-### パラメータ
+### Parameters
 
-| 名前 | 場所 | 必須 | 型 | 説明 |
+| Name | Location | Required | Type | Description |
 | :--- | :------- | :------- | :--- | :---------- |
 | **`targetId`** | path | true | string | ターゲットIDまたは名前 |
 
-### レスポンス
+### Responses
 
-| ステータスコード | 説明 |
+| Status Code | Description |
 | :-------- | :---------- |
 | **`200`** | OK |
 
@@ -975,7 +975,7 @@ GitリポジトリのPRを取得
 
 | Name | Location | Required | Type | Description |
 | :--- | :------- | :------- | :--- | :---------- |
-| **`labels`** | query | undefined | string | JSON エンコードされたラベル |
+| **`labels`** | query | undefined | string | JSONエンコードされたラベル |
 
 ### レスポンス
 
@@ -989,13 +989,13 @@ GitリポジトリのPRを取得
 
 ### パラメータ
 
-| Name | Location | Required | Type | Description |
+| 名前 | 場所 | 必須 | 型 | 説明 |
 | :--- | :------- | :------- | :--- | :---------- |
 | **`workspace`** | body | true | undefined | ワークスペースを作成 |
 
 ### レスポンス
 
-| Status Code | Description |
+| ステータスコード | 説明 |
 | :-------- | :---------- |
 | **`200`** | OK |
 
@@ -1089,14 +1089,14 @@ ProcessGitEvent
 
 ### パラメータ
 
-| 名前 | 場所 | 必須 | 型 | 説明 |
+| Name | Location | Required | Type | Description |
 | :--- | :------- | :------- | :--- | :---------- |
 | **`templateName`** | path | true | string | テンプレート名 |
 | **`force`** | query | undefined | boolean | 強制実行 |
 
 ### レスポンス
 
-| ステータスコード | 説明 |
+| Status Code | Description |
 | :-------- | :---------- |
 | **`204`** | No Content |
 
@@ -1204,16 +1204,16 @@ ProcessGitEvent
 
 ワークスペースを削除
 
-### パラメータ
+### Parameters
 
-| 名前 | 場所 | 必須 | 型 | 説明 |
+| Name | Location | Required | Type | Description |
 | :--- | :------- | :------- | :--- | :---------- |
 | **`workspaceId`** | path | true | string | ワークスペースID |
 | **`force`** | query | undefined | boolean | 強制実行 |
 
-### レスポンス
+### Responses
 
-| ステータスコード | 説明 |
+| Status Code | Description |
 | :-------- | :---------- |
 | **`200`** | OK |
 
@@ -1223,14 +1223,14 @@ ProcessGitEvent
 
 ### パラメータ
 
-| 名前 | 場所 | 必須 | 型 | 説明 |
+| Name | Location | Required | Type | Description |
 | :--- | :------- | :------- | :--- | :---------- |
 | **`workspaceId`** | path | true | string | ワークスペースIDまたは名前 |
 | **`labels`** | body | true | undefined | ラベル |
 
 ### レスポンス
 
-| ステータスコード | 説明 |
+| Status Code | Description |
 | :-------- | :---------- |
 | **`200`** | OK |
 
@@ -1336,16 +1336,16 @@ ProcessGitEvent
 
 ワークスペース内のファイルを一覧表示
 
-### パラメータ
+### Parameters
 
-| 名前 | 場所 | 必須 | 型 | 説明 |
+| Name | Location | Required | Type | Description |
 | :--- | :------- | :------- | :--- | :---------- |
 | **`workspaceId`** | path | true | string | ワークスペースIDまたは名前 |
 | **`path`** | query | undefined | string | パス |
 
-### レスポンス
+### Responses
 
-| ステータスコード | 説明 |
+| Status Code | Description |
 | :-------- | :---------- |
 | **`200`** | OK |
 
@@ -1405,17 +1405,17 @@ ProcessGitEvent
 
 ワークスペース内にフォルダを作成
 
-### Parameters
+### パラメータ
 
-| Name | Location | Required | Type | Description |
+| 名前 | 場所 | 必須 | 型 | 説明 |
 | :--- | :------- | :------- | :--- | :---------- |
 | **`workspaceId`** | path | true | string | ワークスペースIDまたは名前 |
 | **`path`** | query | true | string | パス |
 | **`mode`** | query | true | string | モード |
 
-### Responses
+### レスポンス
 
-| Status Code | Description |
+| ステータスコード | 説明 |
 | :-------- | :---------- |
 | **`201`** | 作成済み |
 
@@ -1458,9 +1458,9 @@ ProcessGitEvent
 
 ワークスペース内のファイル所有者/グループ/権限を設定
 
-### Parameters
+### パラメータ
 
-| Name | Location | Required | Type | Description |
+| 名前 | 場所 | 必須 | 型 | 説明 |
 | :--- | :------- | :------- | :--- | :---------- |
 | **`workspaceId`** | path | true | string | ワークスペースIDまたは名前 |
 | **`path`** | query | true | string | パス |
@@ -1468,9 +1468,9 @@ ProcessGitEvent
 | **`group`** | query | undefined | string | グループ |
 | **`mode`** | query | undefined | string | モード |
 
-### Responses
+### レスポンス
 
-| Status Code | Description |
+| ステータスコード | 説明 |
 | :-------- | :---------- |
 | **`200`** | OK |
 
@@ -1682,13 +1682,13 @@ gitコミットにファイルを追加
 
 ## POST /workspace/\{workspaceId\}/toolbox/lsp/completions
 
-Completionリクエストは、指定されたカーソル位置での補完項目を計算するために、クライアントからサーバーに送信されます。
+Completion リクエストは、指定されたカーソル位置で補完項目を計算するために、クライアントからサーバーに送信されます。
 
 ### Parameters
 
 | Name | Location | Required | Type | Description |
 | :--- | :------- | :------- | :--- | :---------- |
-| **`workspaceId`** | path | true | string | ワークスペースIDまたは名前 |
+| **`workspaceId`** | path | true | string | ワークスペース ID または名前 |
 | **`params`** | body | true | undefined | LspCompletionParams |
 
 ### Responses
@@ -1868,7 +1868,7 @@ Completionリクエストは、指定されたカーソル位置での補完項�
 
 | Status Code | Description |
 | :-------- | :---------- |
-| **`204`** | コンテンツなし |
+| **`204`** | No Content |
 
 ## GET /workspace/\{workspaceId\}/toolbox/process/session/\{sessionId\}/command/\{commandId\}/logs
 

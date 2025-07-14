@@ -79,105 +79,105 @@ Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/upload`エンドポイ�
 
 ## Git操作
 
-DaytonaはWorkspace Toolbox APIを使用してワークスペースのGitリポジトリとプログラム的に対話するオプションを提供します。このAPIは以下のGit操作を提供します：
+DaytonaはWorkspace Toolbox APIを使用してWorkspace Gitリポジトリとプログラム的にやり取りするオプションを提供します。このAPIは以下のGit操作を提供します：
 
 ### ファイルの追加
 
-Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/add`エンドポイントで`POST` HTTPメソッドを使用してワークスペースのGitリポジトリにファイルを追加するオプションを提供します。
+Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/add`エンドポイントで`POST` HTTPメソッドを使用してWorkspace Gitリポジトリにファイルを追加するオプションを提供します。
 
 このAPIは指定されたファイルをGitリポジトリに追加します。
 
 ### ブランチの一覧表示
 
-Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/branches`エンドポイントで`GET` HTTPメソッドを使用してワークスペースのGitリポジトリのブランチを一覧表示するオプションを提供します。
+Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/branches`エンドポイントで`GET` HTTPメソッドを使用してWorkspace Gitリポジトリのブランチを一覧表示するオプションを提供します。
 
 このAPIはGitリポジトリに存在するブランチのリストを返します。
 
 ### ブランチの作成
 
-Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/createbranch`エンドポイントで`POST` HTTPメソッドを使用してワークスペースのGitリポジトリに新しいブランチを作成するオプションを提供します。
+Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/createbranch`エンドポイントで`POST` HTTPメソッドを使用してWorkspace Gitリポジトリに新しいブランチを作成するオプションを提供します。
 
 このAPIはGitリポジトリに指定された名前で新しいブランチを作成します。
 
 ### リポジトリのクローン
 
-Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/clone`エンドポイントで`POST` HTTPメソッドを使用してGitリポジトリをワークスペースにクローンするオプションを提供します。
+Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/clone`エンドポイントで`POST` HTTPメソッドを使用してGitリポジトリをWorkspaceにクローンするオプションを提供します。
 
-このAPIは指定されたGitリポジトリをワークスペースにクローンします。
+このAPIは指定されたGitリポジトリをWorkspaceにクローンします。
 
 ### 変更のコミット
 
-Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/commit`エンドポイントで`POST` HTTPメソッドを使用してワークスペースのGitリポジトリに変更をコミットするオプションを提供します。
+Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/commit`エンドポイントで`POST` HTTPメソッドを使用してWorkspace Gitリポジトリに変更をコミットするオプションを提供します。
 
 このAPIは指定されたメッセージでGitリポジトリに変更をコミットします。
 
 ### コミット履歴
 
-Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/history`エンドポイントで`GET` HTTPメソッドを使用してワークスペースのGitリポジトリのコミット履歴を取得するオプションを提供します。
+Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/history`エンドポイントで`GET` HTTPメソッドを使用してWorkspace Gitリポジトリのコミット履歴を取得するオプションを提供します。
 
 このAPIはGitリポジトリのコミット履歴を返します。
 
 ### 変更のプル
 
-Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/pull`エンドポイントで`POST` HTTPメソッドを使用してリモートGitリポジトリからワークスペースに変更をプルするオプションを提供します。
+Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/pull`エンドポイントで`POST` HTTPメソッドを使用してリモートGitリポジトリからWorkspaceに変更をプルするオプションを提供します。
 
-このAPIはリモートリポジトリからワークスペースに変更をプルします。
+このAPIはリモートリポジトリからWorkspaceに変更をプルします。
 
 ### 変更のプッシュ
 
-Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/push`エンドポイントで`POST` HTTPメソッドを使用してワークスペースのGitリポジトリからリモートリポジトリに変更をプッシュするオプションを提供します。
+Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/push`エンドポイントで`POST` HTTPメソッドを使用してWorkspace Gitリポジトリからリモートリポジトリに変更をプッシュするオプションを提供します。
 
-このAPIはワークスペースからリモートリポジトリに変更をプッシュします。
+このAPIはWorkspaceからリモートリポジトリに変更をプッシュします。
 
 ### Gitステータス
 
-Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/status`エンドポイントで`GET` HTTPメソッドを使用してワークスペースのGitリポジトリのステータスを取得するオプションを提供します。
+Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/git/status`エンドポイントで`GET` HTTPメソッドを使用してWorkspace Gitリポジトリのステータスを取得するオプションを提供します。
 
 このAPIはGitリポジトリのステータスを返します。
 
 ## Language Server Protocol (LSP)
 
-DaytonaはWorkspace Toolbox APIを使用してLanguage Server Protocol (LSP)とプログラム的に対話するオプションを提供します。このAPIは以下のLSP操作を提供します：
+Daytonaは、Workspace Toolbox APIを使用してLanguage Server Protocol (LSP)とプログラム的に対話するオプションを提供します。このAPIは以下のLSP操作を提供します：
 
 ### LSP補完
 
-Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/lsp/completions`エンドポイントで`POST` HTTPメソッドを使用して、指定されたテキストの補完を取得するオプションを提供します。
+Daytonaは、`/workspace/{workspaceId}/{projectId}/toolbox/lsp/completions`エンドポイントで`POST` HTTPメソッドを使用して、指定されたテキストの補完を取得するオプションを提供します。
 
 このAPIは指定されたテキストの補完を返します。
 
 ### LSP DidClose
 
-Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/lsp/didclose`エンドポイントで`POST` HTTPメソッドを使用して、ファイルが閉じられたことをLanguage Serverに通知するオプションを提供します。
+Daytonaは、`/workspace/{workspaceId}/{projectId}/toolbox/lsp/didclose`エンドポイントで`POST` HTTPメソッドを使用して、ファイルが閉じられたことをLanguage Serverに通知するオプションを提供します。
 
 このAPIは指定されたファイルが閉じられたことをLanguage Serverに通知します。
 
 ### LSP DidOpen
 
-Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/lsp/didopen`エンドポイントで`POST` HTTPメソッドを使用して、ファイルが開かれたことをLanguage Serverに通知するオプションを提供します。
+Daytonaは、`/workspace/{workspaceId}/{projectId}/toolbox/lsp/didopen`エンドポイントで`POST` HTTPメソッドを使用して、ファイルが開かれたことをLanguage Serverに通知するオプションを提供します。
 
 このAPIは指定されたファイルが開かれたことをLanguage Serverに通知します。
 
 ### LSPドキュメントシンボル
 
-Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/lsp/documentsymbols`エンドポイントで`GET` HTTPメソッドを使用して、指定されたテキストのドキュメントシンボルを取得するオプションを提供します。
+Daytonaは、`/workspace/{workspaceId}/{projectId}/toolbox/lsp/documentsymbols`エンドポイントで`GET` HTTPメソッドを使用して、指定されたテキストのドキュメントシンボルを取得するオプションを提供します。
 
 このAPIは指定されたテキストのドキュメントシンボルを返します。
 
 ### LSPサーバーの開始
 
-Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/lsp/start`エンドポイントで`POST` HTTPメソッドを使用してLanguage Serverを開始するオプションを提供します。
+Daytonaは、`/workspace/{workspaceId}/{projectId}/toolbox/lsp/start`エンドポイントで`POST` HTTPメソッドを使用してLanguage Serverを開始するオプションを提供します。
 
 このAPIはWorkspace内でLanguage Serverを開始します。
 
 ### LSPサーバーの停止
 
-Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/lsp/stop`エンドポイントで`POST` HTTPメソッドを使用してLanguage Serverを停止するオプションを提供します。
+Daytonaは、`/workspace/{workspaceId}/{projectId}/toolbox/lsp/stop`エンドポイントで`POST` HTTPメソッドを使用してLanguage Serverを停止するオプションを提供します。
 
 このAPIはWorkspace内でLanguage Serverを停止します。
 
 ### Workspaceシンボル
 
-Daytonaは`/workspace/{workspaceId}/{projectId}/toolbox/lsp/workspacesymbols`エンドポイントで`GET` HTTPメソッドを使用して、指定されたテキストのWorkspaceシンボルを取得するオプションを提供します。
+Daytonaは、`/workspace/{workspaceId}/{projectId}/toolbox/lsp/workspacesymbols`エンドポイントで`GET` HTTPメソッドを使用して、指定されたテキストのWorkspaceシンボルを取得するオプションを提供します。
 
 このAPIは指定されたテキストのWorkspaceシンボルを返します。
 

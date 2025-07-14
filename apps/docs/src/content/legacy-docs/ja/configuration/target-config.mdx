@@ -90,7 +90,7 @@ None
 Target Config <target_config> created successfully
 ```
 
-## Target Configurationの一覧表示
+## Target Configuration一覧の表示
 
 Daytonaでは、以前に作成したすべてのTarget Configurationとその詳細を一覧表示することで、Target Configurationを追跡するオプションを提供しています。
 
@@ -100,7 +100,7 @@ Daytonaでは、以前に作成したすべてのTarget Configurationとその�
 daytona target-config list
 ```
 
-このコマンドを実行すると、DaytonaはTarget Configurationの一覧とその詳細を表示します。Target Configuration名、接続されているProvider、および設定されているRunnerを確認できます。
+このコマンドを実行すると、DaytonaはTarget Configurationの一覧とその詳細を表示します。Target Configuration名、接続されているProvider、および設定されたRunnerを確認できます。
 
 ```text
 Target            Provider                Runner
@@ -110,15 +110,15 @@ local             docker-provider         local
 
 ## Target Configurationの削除
 
-Daytonaは、Target Configurationを削除するオプションを提供し、不要になったものを管理および削除するのに役立ちます。Target Configurationが削除されると、そのTarget Configuration上でWorkspaceを管理またはデプロイすることができなくなります。
+Daytonaは、Target Configurationを削除するオプションを提供し、不要になったものを管理・削除するのに役立ちます。Target Configurationが削除されると、そのTarget Configuration上でWorkspaceを管理またはデプロイすることができなくなります。
 
-1. 次のコマンドを実行してTarget Configurationを削除します：
+1. 以下のコマンドを実行してTarget Configurationを削除します：
 
 ```shell
 daytona target-config delete
 ```
 
-このコマンドを実行すると、DaytonaはTarget Configurationのリストとその詳細を表示します。Configuration名、Workspaceの一意識別子、および接続されているリポジトリを確認できます。
+このコマンドを実行すると、DaytonaはTarget Configurationの一覧とその詳細を表示します。Configuration名、Workspaceの一意識別子、および接続されているリポジトリを確認できます。
 
 2. 削除したいConfigurationで**`Enter`**を押します。
 
@@ -333,15 +333,15 @@ Target Config <target_config> created successfully
 
 ## AWS
 
-DaytonaはWorkspaceのデプロイと管理に使用するAWS Target Configurationを作成するオプションを提供します。
+DaytonaはWorkspaceのデプロイと管理に使用するAWSターゲット設定を作成するオプションを提供します。
 
-1. 次のコマンドを実行してTarget Configurationを作成します：
+1. 以下のコマンドを実行してターゲット設定を作成します：
 
 ```shell
 daytona target-config create
 ```
 
-2. **`AWS`**を選択してAWS Providerを使用します。
+2. **`AWS`**を選択してAWSプロバイダーを使用します。
 
 ```text
 Choose a provider
@@ -352,12 +352,12 @@ v0.0.0
 ```
 
 :::note
-以前に[Runner](/docs/ja/usage/runners)をインストールしていない場合、DaytonaはProviderを管理するRunnerの選択を求めます。選択すると、DaytonaはターゲットシステムにRunnerをインストールし、Daytona Serverに接続します。
+以前に[Runner](/docs/ja/usage/runners)をインストールしていない場合、Daytonaはプロバイダーを管理するRunnerを選択するよう促します。選択すると、DaytonaはターゲットシステムにRunnerをインストールし、Daytonaサーバーに接続します。
 :::
 
 <br />
 
-3. Target Configurationの名前を入力します。
+3. ターゲット設定の名前を入力します。
 
 ```text
 Target Config Name
@@ -417,7 +417,7 @@ https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html
 >
 ```
 
-5. **`Enter`**をクリックしてTarget Configurationの作成を確認します。
+5. **`Enter`**をクリックしてターゲット設定の作成を確認します。
 
 ```text
 Target Config <target_config> created successfully
@@ -425,9 +425,9 @@ Target Config <target_config> created successfully
 
 ## Azure
 
-Daytonaはワークスペースのデプロイと管理に使用するAzure Target Configurationを設定するオプションを提供します。
+DaytonaはWorkspaceのデプロイと管理に使用するAzure Target Configurationを設定するオプションを提供します。
 
-1. 以下のコマンドを実行してTarget Configurationを設定します：
+1. 次のコマンドを実行してTarget Configurationを設定します：
 
 ```shell
 daytona target-config set
@@ -478,7 +478,7 @@ Disk Size
 
 Disk Type
 Azureマネージドディスクのタイプ。デフォルトはStandardSSD_LRSです。利用可能なディスクタイプのリスト：                                                                    
-https://docs.microsoft.com/azure/virtual-machines/linux/disks-types場所ごとの利用可能なディスクタイプのリストは以下のコマンドで取得できます：
+https://docs.microsoft.com/azure/virtual-machines/linux/disks-types場所ごとの利用可能なディスクタイプのリストは次のコマンドで取得できます：
 az vm list-skus --location <your-region> --output table
 >
 
@@ -490,7 +490,7 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/linux/cli-ps-findimage
 
 Region
 Azureリソースがホストされる地理的エリア。デフォルトはcentralusです。
-利用可能なリージョンのリストは以下のコマンドで取得できます：
+利用可能なリージョンのリストは次のコマンドで取得できます：
 "az account list-locations -o table"
 >
 
@@ -719,24 +719,24 @@ Target Config Name
 
 ```text
 Auth Token
-If empty, token will be fetched from the FLY_ACCESS_TOKEN environment variable. 
+空の場合、トークンはFLY_ACCESS_TOKEN環境変数から取得されます。
 >
 
 Disk Size
-The size of the disk in GB.
+ディスクサイズ（GB単位）。
 > 
 
 Org Slug
-The organization name to create the fly machine in.
+flyマシンを作成する組織名。
 >
 
 Region
-The region where the fly machine resides. If not specified, near region will be used.
+flyマシンが存在するリージョン。指定されていない場合、近くのリージョンが使用されます。
 >
 
 Size
-The size of the fly machine. Default is shared-cpu-4x. 
-List of available sizes https://fly.io/docs/about/pricing/#started-fly-machines
+flyマシンのサイズ。デフォルトはshared-cpu-4xです。
+利用可能なサイズのリスト https://fly.io/docs/about/pricing/#started-fly-machines
 >
 ```
 

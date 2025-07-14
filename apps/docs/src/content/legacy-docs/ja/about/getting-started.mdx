@@ -60,11 +60,11 @@ Daytonaは開発環境のセットアップと管理を最適化するために�
 | **ツール**                          | **説明**                                                                                                                                 |
 |-----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | テキストエディタ / IDE                 | 設定ファイルの編集やDaytona Workspace内でのコード作業に推奨されます。                                                    |
-| SSHクライアント                        | リモートサーバーへのアクセスに必要です。特にリモートDockerインストール上でWorkspaceをデプロイする場合や、リモートGitリポジトリにアクセスする場合に必要です。 |
+| SSHクライアント                        | リモートサーバーへのアクセスに必要です。特にリモートDockerインストールでWorkspaceをデプロイする場合や、リモートGitリポジトリにアクセスする場合に必要です。 |
 
 ## Daytonaのインストール
 
-お使いのオペレーティングシステムにDaytonaをインストールするには、[インストール](/docs/ja/installation/installation)ガイドに記載されている手順に従ってください。このガイドには、Linux、macOS、およびWindowsオペレーティングシステムでDaytonaをインストールするための詳細な手順が含まれています。
+お使いのオペレーティングシステムにDaytonaをインストールするには、[インストール](/docs/ja/installation/installation)ガイドに記載されている手順に従ってください。このガイドには、Linux、macOS、およびWindowsオペレーティングシステムにDaytonaをインストールするための詳細な手順が含まれています。
 
 インストールプロセスは、お使いのオペレーティングシステムと特定の環境によって異なる場合があります。お使いのセットアップに合わせた包括的な手順については、ガイドを参照してください。
 
@@ -106,7 +106,7 @@ Daytona CLIにアクセスするには、ターミナルを開き、`daytona`コ
 
 ## Git Providerの追加
 
-Daytonaは、お好みの[Git Provider](/docs/ja/configuration/git-providers)を統合するオプションを提供し、開発ワークフローを向上させます。この統合により、Daytona内で直接リポジトリにアクセスし、管理することができ、既存のプロジェクトからのワークスペース作成を簡素化します。
+Daytonaは、お好みの[Git Provider](/docs/ja/configuration/git-providers)を統合するオプションを提供し、開発ワークフローを強化します。この統合により、Daytona内で直接リポジトリにアクセスし、管理することができ、既存のプロジェクトからのワークスペース作成を簡素化します。
 
 Daytonaは、[GitHub](/docs/ja/configuration/git-providers#github)、[GitLab](/docs/ja/configuration/git-providers#gitlab)、[Bitbucket](/docs/ja/configuration/git-providers#bitbucket)、[GitHub Enterprise Server](/docs/ja/configuration/git-providers#github-enterprise-server)、[GitLab Self-Managed](/docs/ja/configuration/git-providers#gitlab-self-managed)、[Bitbucket Server](/docs/ja/configuration/git-providers#bitbucket-server)、[Codeberg](/docs/ja/configuration/git-providers#codeberg)、[Gitea](/docs/ja/configuration/git-providers#gitea)、[Gitness](/docs/ja/configuration/git-providers#gitness)、[Azure DevOps](/docs/ja/configuration/git-providers#azure-devops)、[AWS CodeCommit](/docs/ja/configuration/git-providers#aws-codecommit)、[Gogs](/docs/ja/configuration/git-providers#gogs)、[Gitee](/docs/ja/configuration/git-providers#gitee)を含む、さまざまなGit Providerをサポートしています。
 
@@ -141,7 +141,7 @@ Git provider has been registered
 
 ## Providerのインストール
 
-[Providers](/docs/ja/configuration/providers)は、Daytonaが様々な技術と統合して開発環境を作成・管理するためのプラグインです。Providerは基盤技術の複雑さを抽象化し、Daytonaがコンテナ化、オーケストレーション、またはクラウドベースの仮想マシンを通じて環境をデプロイ・実行するために活用する基盤エンジンとして機能します。
+[Provider](/docs/ja/configuration/providers)は、Daytonaが様々な技術と統合して開発環境を作成・管理するためのプラグインです。Providerは基盤技術の複雑さを抽象化し、Daytonaがコンテナ化、オーケストレーション、またはクラウドベースの仮想マシンを通じて環境をデプロイ・実行するために活用する基盤エンジンとして機能します。
 
 Daytonaは[Docker](/docs/ja/configuration/providers#docker)、[DigitalOcean](/docs/ja/configuration/providers#digitalocean)、[AWS](/docs/ja/configuration/providers#aws)、[Azure](/docs/ja/configuration/providers#azure)、[GCP](/docs/ja/configuration/providers#gcp)、[Hetzner](/docs/ja/configuration/providers#hetzner)、[Fly](/docs/ja/configuration/providers#fly)を含む様々なProviderをサポートしています。
 
@@ -159,7 +159,7 @@ Providerを選択すると、Daytonaは選択されたProviderをインストー
 Provider <provider> has been successfully installed
 ```
 
-追加の[Providers](/docs/ja/configuration/providers)をインストールして、Daytonaの機能を拡張し、幅広いコンテナ管理プラットフォームやクラウドホスティングサービスをサポートできます。
+追加の[Provider](/docs/ja/configuration/providers)をインストールして、Daytonaの機能を拡張し、幅広いコンテナ管理プラットフォームやクラウドホスティングサービスをサポートできます。
 
 <DocumentList>
 <DocumentListItem
@@ -172,9 +172,9 @@ Provider <provider> has been successfully installed
 
 ## Target Configurationの作成
 
-[Target Configuration](/docs/ja/configuration/target-config)とは、様々な[Providers](/docs/ja/configuration/providers)によって促進される開発セットアップがデプロイされ、管理される特定の宛先または環境を指します。Providersは環境を作成するために使用される方法と技術を定義し、Target Configurationsはこれらの環境が存在する正確な場所またはプラットフォームを指定します。
+[Target Configuration](/docs/ja/configuration/target-config)は、様々な[Providers](/docs/ja/configuration/providers)によって促進される開発セットアップがデプロイされ管理される特定の宛先または環境を指します。Providersは環境を作成するために使用される方法と技術を定義し、Target Configurationsはこれらの環境が存在する正確な場所またはプラットフォームを指定します。
 
-Target Configurationは、ローカルマシン、リモートサーバー、またはクラウドインスタンスにすることができ、選択されたProviderに基づいて変わることがあります。Target Configurationsは、Daytonaが提供する統一されたインターフェース内で、異なるプラットフォームやアカウント間で環境をデプロイし、管理する柔軟性を提供します。
+Target Configurationは、ローカルマシン、リモートサーバー、またはクラウドインスタンスにすることができ、選択されたProviderに基づいて変わることがあります。Target Configurationsは、Daytonaが提供する統一されたインターフェース内で、異なるプラットフォームとアカウント間で環境をデプロイし管理する柔軟性を提供します。
 
 サポートされているTarget Configurationsには、[Docker (Local)](/docs/ja/configuration/target-config#docker-local)、[Docker (Remote)](/docs/ja/configuration/target-config#docker-remote)、[DigitalOcean](/docs/ja/configuration/target-config#digitalocean)、[AWS](/docs/ja/configuration/target-config#aws)、[Azure](/docs/ja/configuration/target-config#azure)、[GCP](/docs/ja/configuration/target-config#gcp)、[Hetzner](/docs/ja/configuration/target-config#hetzner)、および[Fly](/docs/ja/configuration/target-config#fly)があります。
 
@@ -184,11 +184,11 @@ Target Configurationは、ローカルマシン、リモートサーバー、ま
 daytona target-config create
 ```
 
-2. デプロイしたい環境に適したProviderを選択します。
+2. デプロイしたい環境に適切なProviderを選択します。
 
 3. Target Configurationの名前を入力します。
 
-4. プロンプトが表示されたら、適切な設定オプションを入力します。設定オプションは選択されたProviderによって異なります。
+4. プロンプトが表示されたら、適切な設定オプションを入力します。設定オプションは選択されたProviderに基づいて異なります。
 
 5. **`Enter`**をクリックしてTarget Configurationの追加を確認します。
 
@@ -312,7 +312,7 @@ daytona target create
 
 2. Targetに使用する[Target Configuration](/docs/ja/configuration/target-config)を選択します。
 
-3. デプロイ先の環境用の[Provider](/docs/ja/configuration/providers)を選択します。
+3. デプロイしたい環境の[Provider](/docs/ja/configuration/providers)を選択します。
 
 4. Targetの名前を入力します。
 
@@ -323,7 +323,7 @@ daytona target create
 Creating target <target_name>
 ```
 
-異なる開発環境用に追加の[Targets](/docs/ja/usage/targets)を設定し、必要に応じてそれらを管理および切り替えることができます。
+異なる開発環境用に追加の[Targets](/docs/ja/usage/targets)を設定することで、必要に応じてそれらを管理し、切り替えることができます。
 
 `daytona target --help`コマンドを使用して、Target設定に利用可能な設定オプションを確認してください。
 
@@ -446,7 +446,7 @@ Targetの選択と設定が完了すると、Daytonaは指定されたGitリポ�
 <Workspace> | ✓ Workspace <workspace> created
 ```
 
-`daytona create --help`コマンドを使用して、Workspace作成時に利用可能な設定オプションを確認できます。
+`daytona create --help`コマンドを使用して、Workspace作成に利用可能な設定オプションを確認できます。
 
 <DocumentList>
 <DocumentListItem

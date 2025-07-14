@@ -173,7 +173,8 @@ params = CreateSandboxFromSnapshotParams(
     snapshot="my-snapshot-id",
     env_vars={"DEBUG": "true"},
     auto_stop_interval=0,
-    auto_archive_interval=60
+    auto_archive_interval=60,
+    auto_delete_interval=120
 )
 sandbox = await daytona.create(params, timeout=40)
 ```
@@ -195,7 +196,7 @@ async def create(
 **引数**:
 
 - `params` _Optional[CreateSandboxFromImageParams]_ - イメージからのサンドボックス作成のパラメータ。
-- `timeout` _Optional[float]_ - サンドボックス作成のタイムアウト（秒）。0はタイムアウトなしを意味します。
+- `timeout` _Optional[float]_ - サンドボックス作成のタイムアウト（秒）。0は無制限を意味します。
   デフォルトは60秒です。
 - `on_snapshot_create_logs` _Callable[[str], None]_ - このコールバック関数はスナップショット作成ログを処理します。
   
@@ -232,6 +233,7 @@ params = CreateSandboxFromImageParams(
     resources=Resources(cpu=2, memory=4),
     auto_stop_interval=0,
     auto_archive_interval=60,
+    auto_delete_interval=120
 )
 sandbox = await daytona.create(
     params,
@@ -251,7 +253,7 @@ async def delete(sandbox: AsyncSandbox, timeout: Optional[float] = 60) -> None
 **引数**:
 
 - `sandbox` _Sandbox_ - 削除するサンドボックスインスタンス。
-- `timeout` _Optional[float]_ - サンドボックス削除のタイムアウト（秒）。0はタイムアウトなしを意味します。
+- `timeout` _Optional[float]_ - サンドボックス削除のタイムアウト（秒）。0は無制限を意味します。
   デフォルトは60秒です。
   
 
@@ -422,12 +424,18 @@ Daytonaクライアントを初期化するための設定オプション。
 
 **属性**:
 
-- `api_key` _Optional[str]_ - Daytona APIでの認証用APIキー。設定されていない場合は、環境変数`DAYTONA_API_KEY`で提供するか、代わりにJWTトークンを提供する必要があります。
-- `jwt_token` _Optional[str]_ - Daytona APIでの認証用JWTトークン。設定されていない場合は、環境変数`DAYTONA_JWT_TOKEN`で提供するか、代わりにAPIキーを提供する必要があります。
-- `organization_id` _Optional[str]_ - JWTベース認証で使用される組織ID。JWTトークンが提供される場合は必須で、ここまたは環境変数`DAYTONA_ORGANIZATION_ID`で設定する必要があります。
-- `api_url` _Optional[str]_ - Daytona APIのURL。ここまたは環境変数`DAYTONA_API_URL`で設定されていない場合、デフォルトで`'https://app.daytona.io/api'`になります。
-- `server_url` _Optional[str]_ - 非推奨。代わりに`api_url`を使用してください。このプロパティは将来のバージョンで削除される予定です。
-- `target` _Optional[str]_ - Sandboxのターゲットランナー場所。ここまたは環境変数`DAYTONA_TARGET`で設定されていない場合、デフォルトで`'us'`になります。
+- `api_key` _Optional[str]_ - Daytona APIでの認証用APIキー。設定されていない場合は、
+  環境変数`DAYTONA_API_KEY`で提供するか、代わりにJWTトークンを提供する必要があります。
+- `jwt_token` _Optional[str]_ - Daytona APIでの認証用JWTトークン。設定されていない場合は、
+  環境変数`DAYTONA_JWT_TOKEN`で提供するか、代わりにAPIキーを提供する必要があります。
+- `organization_id` _Optional[str]_ - JWTベース認証で使用される組織ID。JWTトークンが
+  提供される場合は必須で、ここまたは環境変数`DAYTONA_ORGANIZATION_ID`で設定する必要があります。
+- `api_url` _Optional[str]_ - Daytona APIのURL。ここまたは環境変数`DAYTONA_API_URL`で設定されていない場合、
+  デフォルトで`'https://app.daytona.io/api'`になります。
+- `server_url` _Optional[str]_ - 非推奨。代わりに`api_url`を使用してください。このプロパティは
+  将来のバージョンで削除される予定です。
+- `target` _Optional[str]_ - Sandboxのターゲットランナー場所。ここまたは環境変数`DAYTONA_TARGET`で設定されていない場合、
+  デフォルトで`'us'`になります。
   
 
 **例**:
@@ -451,16 +459,19 @@ class CreateSandboxBaseParams(BaseModel)
 
 - `language` _Optional[CodeLanguage]_ - Sandboxのプログラミング言語。デフォルトは"python"。
 - `os_user` _Optional[str]_ - SandboxのOSユーザー。
-- `env_vars` _Optional[Dict[str, str]]_ - Sandboxに設定する環境変数。
+- `env_vars` _Optional[Dict[str, str]]_ - Sandboxで設定する環境変数。
 - `labels` _Optional[Dict[str, str]]_ - Sandboxのカスタムラベル。
 - `public` _Optional[bool]_ - Sandboxを公開するかどうか。
 - `timeout` _Optional[float]_ - Sandboxが作成され開始されるまでのタイムアウト（秒）。
-- `auto_stop_interval` _Optional[int]_ - その時間内にSandboxイベントが発生しなかった場合に
-  Sandboxが自動的に停止するまでの間隔（分）。デフォルトは15分。
+- `auto_stop_interval` _Optional[int]_ - この時間内にSandboxイベントが発生しなかった場合に
+  Sandboxが自動的に停止する間隔（分）。デフォルトは15分。
   0は自動停止なしを意味する。
-- `auto_archive_interval` _Optional[int]_ - 継続的に停止されたSandboxが
-  自動的にアーカイブされるまでの間隔（分）。デフォルトは7日。
+- `auto_archive_interval` _Optional[int]_ - 継続的に停止しているSandboxが
+  自動的にアーカイブされる間隔（分）。デフォルトは7日。
   0は最大間隔が使用されることを意味する。
+- `auto_delete_interval` _Optional[int]_ - 継続的に停止しているSandboxが
+  自動的に削除される間隔（分）。デフォルトでは、自動削除は無効。
+  負の値は無効を意味し、0は停止と同時に即座に削除することを意味する。
 
 ## CreateSandboxFromImageParams
 

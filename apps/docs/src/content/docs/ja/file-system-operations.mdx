@@ -19,7 +19,7 @@ Daytona SDKは、PythonとTypeScriptを使用してSandbox内のファイルと�
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
-# List files in a directory
+# ディレクトリ内のファイルを一覧表示
 files = sandbox.fs.list_files("workspace")
 
 for file in files:
@@ -32,7 +32,7 @@ print(f"Modified: {file.mod_time}")
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-// List files in a directory
+// ディレクトリ内のファイルを一覧表示
 const files = await sandbox.fs.listFiles("workspace")
 
 files.forEach(file => {
@@ -53,13 +53,13 @@ Daytona SDKは、PythonとTypeScriptを使用して特定の権限でディレ�
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
-# Create with specific permissions
+# 特定の権限で作成
 sandbox.fs.create_folder("workspace/new-dir", "755")
 ```
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-// Create with specific permissions
+// 特定の権限で作成
 await sandbox.fs.createFolder("workspace/new-dir", "755")
 ```
 
@@ -77,7 +77,7 @@ Daytona SDKは、PythonとTypeScriptを使用してSandbox内のファイルの�
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
-# Upload a single file
+# 単一ファイルをアップロード
 with open("local_file.txt", "rb") as f:
     content = f.read()
 sandbox.fs.upload_file(content, "remote_file.txt")
@@ -85,7 +85,7 @@ sandbox.fs.upload_file(content, "remote_file.txt")
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-// Upload a single file
+// 単一ファイルをアップロード
 const fileContent = Buffer.from('Hello, World!')
 await sandbox.fs.uploadFile(fileContent, "data.txt")
 ```
@@ -100,7 +100,7 @@ await sandbox.fs.uploadFile(fileContent, "data.txt")
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
-# Upload multiple files at once
+# 複数のファイルを一度にアップロード
 files_to_upload = []
 
 with open("file1.txt", "rb") as f1:
@@ -127,7 +127,7 @@ sandbox.fs.upload_files(files_to_upload)
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-// Upload multiple files at once
+// 複数のファイルを一度にアップロード
 const files = [
     {
         source: Buffer.from('Content of file 1'),
@@ -151,7 +151,7 @@ await sandbox.fs.uploadFiles(files)
 
 ### ファイルのダウンロード
 
-以下のコマンドは、Sandboxユーザーのルートディレクトリからファイル`file1.txt`をダウンロードし、内容を出力します：
+以下のコマンドは、Sandboxユーザーのルートディレクトリから`file1.txt`ファイルをダウンロードし、内容を出力します：
 
 <Tabs>
 <TabItem label="Python" icon="seti:python">
@@ -210,10 +210,10 @@ Daytona SDKは、PythonとTypeScriptを使用してファイル権限の設定�
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
-# Set file permissions
+# ファイル権限を設定
 sandbox.fs.set_file_permissions("workspace/file.txt", "644")
 
-# Get file permissions
+# ファイル権限を取得
 
 file_info = sandbox.fs.get_file_info("workspace/file.txt")
 print(f"Permissions: {file_info.permissions}")
@@ -222,10 +222,10 @@ print(f"Permissions: {file_info.permissions}")
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-// Set file permissions
+// ファイル権限を設定
 await sandbox.fs.setFilePermissions("workspace/file.txt", { mode: "644" })
 
-// Get file permissions
+// ファイル権限を取得
 const fileInfo = await sandbox.fs.getFileDetails("workspace/file.txt")
 console.log(`Permissions: ${fileInfo.permissions}`)
 ```
@@ -233,14 +233,14 @@ console.log(`Permissions: ${fileInfo.permissions}`)
 </TabItem>
 </Tabs>
 
-### ファイル検索と置換
+### ファイルの検索と置換
 
 Daytona SDKは、PythonとTypeScriptを使用してファイル内のテキストを検索し、ファイル内のテキストを置換するオプションを提供します。
 
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
-# Search for text in files; if a folder is specified, the search is recursive
+# ファイル内のテキストを検索；フォルダが指定された場合、検索は再帰的に行われます
 results = sandbox.fs.find_files(
     path="workspace/src",
     pattern="text-of-interest"
@@ -251,7 +251,7 @@ for match in results:
     print(f"Line content: {match.content}")
     print("\n")
 
-# Replace text in files
+# ファイル内のテキストを置換
 
 sandbox.fs.replace_in_files(
 files=["workspace/file1.txt", "workspace/file2.txt"],
@@ -263,7 +263,7 @@ new_value="new_text"
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-// Search for text in files; if a folder is specified, the search is recursive
+// ファイル内のテキストを検索；フォルダが指定された場合、検索は再帰的に行われます
 const results = await sandbox.fs.findFiles({
     path="workspace/src",
     pattern: "text-of-interest"
@@ -274,7 +274,7 @@ results.forEach(match => {
     console.log('Line content:', match.content)
 })
 
-// Replace text in files
+// ファイル内のテキストを置換
 await sandbox.fs.replaceInFiles(
     ["workspace/file1.txt", "workspace/file2.txt"],
     "old_text",

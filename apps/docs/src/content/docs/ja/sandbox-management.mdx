@@ -7,7 +7,7 @@ import { TabItem, Tabs } from '@astrojs/starlight/components'
 import Image from 'astro/components/Image.astro'
 
 SandboxはDaytonaによって管理される分離された開発環境です。このガイドでは、SDKを使用してSandboxを作成、管理、削除する方法について説明します。
-デフォルトでは、Sandboxは15分間の非アクティブ状態後に自動停止し、**1 vCPU**、**1GB RAM**、**3GiB disk**を使用します。
+デフォルトでは、Sandboxは15分間の非アクティブ状態後に自動停止し、**1 vCPU**、**1GB RAM**、**3GiBディスク**を使用します。
 
 ## Sandboxのライフサイクル
 
@@ -28,7 +28,7 @@ Daytona SDKは、デフォルトまたはカスタム設定でSandboxを作成�
 
 ### 基本的なSandboxの作成
 
-Daytona SDKは、PythonとTypeScriptを使用して、デフォルト設定、特定の言語、またはカスタムラベルでSandboxを作成するメソッドを提供します。
+Daytona SDKは、デフォルト設定、特定の言語、またはカスタムラベルを使用してSandboxを作成するメソッドをPythonとTypeScriptで提供します。
 
 <Tabs>
 <TabItem label="Python" icon="seti:python">
@@ -37,16 +37,16 @@ from daytona import Daytona, CreateSandboxFromSnapshotParams
 
 daytona = Daytona()
 
-# Create a basic Sandbox
+# 基本的なSandboxを作成
 
 sandbox = daytona.create()
 
-# Create a Sandbox with specific language
+# 特定の言語でSandboxを作成
 
 params = CreateSandboxFromSnapshotParams(language="python")
 sandbox = daytona.create(params)
 
-# Create a Sandbox with custom labels
+# カスタムラベルでSandboxを作成
 
 params = CreateSandboxFromSnapshotParams(labels={"SOME_LABEL": "my-label"})
 sandbox = daytona.create(params)
@@ -60,13 +60,13 @@ import { Daytona } from '@daytonaio/sdk';
 
 const daytona = new Daytona();
 
-// Create a basic Sandbox
+// 基本的なSandboxを作成
 const sandbox = await daytona.create();
 
-// Create a Sandbox with specific language
+// 特定の言語でSandboxを作成
 const sandbox = await daytona.create({ language: 'typescript' });
 
-// Create a Sandbox with custom labels
+// カスタムラベルでSandboxを作成
 const sandbox = await daytona.create({ labels: { SOME_LABEL: 'my-label' } });
 ```
 
@@ -95,12 +95,12 @@ from daytona import Daytona, Resources, CreateSandboxFromImageParams, Image
 
 daytona = Daytona()
 
-# Create a Sandbox with custom resources
+# カスタムリソースでSandboxを作成
 
 resources = Resources(
-cpu=2, # 2 CPU cores
+cpu=2, # 2 CPUコア
 memory=4, # 4GB RAM
-disk=8, # 8GB disk space
+disk=8, # 8GBディスク容量
 )
 
 params = CreateSandboxFromImageParams(
@@ -119,13 +119,13 @@ import { Daytona, Image } from "@daytonaio/sdk";
 async function main() {
   const daytona = new Daytona();
 
-  // Create a Sandbox with custom resources
+  // カスタムリソースでSandboxを作成
   const sandbox = await daytona.create({
     image: Image.debianSlim("3.13"),
     resources: {
-      cpu: 2, // 2 CPU cores
+      cpu: 2, // 2 CPUコア
       memory: 4, // 4GB RAM
-      disk: 8, // 8GB disk space
+      disk: 8, // 8GBディスク容量
     },
   });
 }
@@ -147,14 +147,14 @@ Daytona SDKは、PythonとTypeScriptを使用してSandboxのID、ルートデ�
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
-# Get Sandbox ID
+# Sandbox IDを取得
 sandbox_id = sandbox.id
 
-# Get the root directory of the Sandbox user
+# Sandboxユーザーのルートディレクトリを取得
 
 root_dir = sandbox.get_user_root_dir()
 
-# Get the Sandbox id, auto-stop interval and state
+# Sandbox ID、自動停止間隔、状態を取得
 
 print(sandbox.id)
 print(sandbox.auto_stop_interval)
@@ -165,13 +165,13 @@ print(sandbox.state)
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-// Get Sandbox ID
+// Sandbox IDを取得
 const sandboxId = sandbox.id;
 
-// Get the root directory of the Sandbox user
+// Sandboxユーザーのルートディレクトリを取得
 const rootDir = await sandbox.getUserRootDir();
 
-// Get the Sandbox id, auto-stop interval and state
+// Sandbox ID、自動停止間隔、状態を取得
 console.log(sandbox.id)
 console.log(sandbox.autoStopInterval)
 console.log(sandbox.state)
@@ -193,17 +193,17 @@ Daytona SDKは、PythonとTypeScriptを使用してSandboxを停止および開�
 ```python
 sandbox = daytona.create(CreateSandboxParams(language="python"))
 
-# Stop Sandbox
+# Sandboxを停止
 
 sandbox.stop()
 
 print(sandbox.id) # 7cd11133-96c1-4cc8-9baa-c757b8f8c916
 
-# The sandbox ID can later be used to find the sandbox and start it
+# sandbox IDは後でsandboxを見つけて開始するために使用できます
 
 sandbox = daytona.find_one("7cd11133-96c1-4cc8-9baa-c757b8f8c916")
 
-# Start Sandbox
+# Sandboxを開始
 
 sandbox.start()
 
@@ -213,16 +213,16 @@ sandbox.start()
 ```typescript
 const sandbox = await daytona.create({ language: 'typescript' });
 
-// Stop Sandbox
+// Sandboxを停止
 await sandbox.stop();
 
 console.log(sandbox.id) // 7cd11133-96c1-4cc8-9baa-c757b8f8c916
 
-// The sandbox ID can later be used to find the sandbox and start it
+// sandbox IDは後でsandboxを見つけて開始するために使用できます
 
 const sandbox = await daytona.findOne("7cd11133-96c1-4cc8-9baa-c757b8f8c916");
 
-// Start Sandbox
+// Sandboxを開始
 await sandbox.start();
 ```
 
@@ -242,10 +242,10 @@ Sandboxはアーカイブする前に停止する必要があり、停止され�
 
 <Tabs>
   <TabItem label="Python" icon="seti:python">
-    ```python # Archive Sandbox sandbox.archive() ```
+    ```python # Sandboxをアーカイブする sandbox.archive() ```
   </TabItem>
   <TabItem label="TypeScript" icon="seti:typescript">
-    ```typescript // Archive Sandbox await sandbox.archive(); ```
+    ```typescript // Sandboxをアーカイブする await sandbox.archive(); ```
   </TabItem>
 </Tabs>
 
@@ -256,13 +256,13 @@ Daytona SDKは、PythonとTypeScriptを使用してSandboxを削除するメソ�
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
-# Delete Sandbox
+# Sandboxを削除
 sandbox.delete()
 ```
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-// Delete Sandbox
+// Sandboxを削除
 await sandbox.delete();
 ```
 
@@ -270,7 +270,7 @@ await sandbox.delete();
 </Tabs>
 
 :::tip
-ターミナルでSandboxを管理することを好む場合は、[Daytona CLI](/docs/ja/getting-started#setting-up-the-daytona-cli)をチェックしてください：
+ターミナルを通じてSandboxを管理することを好む場合は、[Daytona CLI](/docs/ja/getting-started#setting-up-the-daytona-cli)をチェックしてください：
 
 ```bash
 daytona sandbox list
@@ -298,9 +298,9 @@ All sandboxes have been deleted
 
 :::
 
-## 自動停止と自動アーカイブ
+## 自動ライフサイクル管理
 
-Daytona Sandboxesは、ユーザー定義の間隔に基づいて自動的に停止およびアーカイブできます。
+Daytona Sandboxは、ユーザー定義の間隔に基づいて自動的に停止、アーカイブ、削除することができます。
 
 ### 自動停止間隔
 
@@ -309,7 +309,7 @@ Daytona Sandboxesは、ユーザー定義の間隔に基づいて自動的に停
 このパラメータは以下のいずれかに設定できます：
 
 - 分単位の時間間隔
-- `0`（自動停止機能を無効にし、sandboxを無期限に実行させる）
+- `0`（自動停止機能を無効にし、サンドボックスを無期限に実行させる）
 
 パラメータが設定されていない場合、デフォルトの間隔である`15`分が使用されます。
 
@@ -320,7 +320,7 @@ Daytona Sandboxesは、ユーザー定義の間隔に基づいて自動的に停
 ```python
 sandbox = daytona.create(CreateSandboxFromSnapshotParams(
     snapshot="my-snapshot-name",
-    auto_stop_interval=0,  # Disables the auto-stop feature - default is 15 minutes
+    auto_stop_interval=0,  # 自動停止機能を無効にする - デフォルトは15分
 ))
 ```
 </TabItem>
@@ -328,7 +328,7 @@ sandbox = daytona.create(CreateSandboxFromSnapshotParams(
 ```typescript
 const sandbox = await daytona.create({
     snapshot: "my-snapshot-name",
-    autoStopInterval: 0, // Disables the auto-stop feature - default is 15 minutes
+    autoStopInterval: 0, // 自動停止機能を無効にする - デフォルトは15分
 });
 ```
 
@@ -351,7 +351,7 @@ const sandbox = await daytona.create({
 ```python
 sandbox = daytona.create(CreateSandboxFromSnapshotParams(
     snapshot="my-snapshot-name",
-    auto_archive_interval=60 # Auto-archive after a Sandbox has been stopped for 1 hour
+    auto_archive_interval=60 # Sandboxが1時間停止した後に自動アーカイブ
 ))
 ```
 </TabItem>
@@ -359,22 +359,69 @@ sandbox = daytona.create(CreateSandboxFromSnapshotParams(
 ```typescript
 const sandbox = await daytona.create({
     snapshot: "my-snapshot-name",
-    autoArchiveInterval: 60 // Auto-archive after a Sandbox has been stopped for 1 hour
+    autoArchiveInterval: 60 // Sandboxが1時間停止した後に自動アーカイブ
 });
 ```
 </TabItem>
 </Tabs>
 
-### 無期限実行
+### 自動削除間隔
 
-デフォルトでは、Sandboxは15分間の非アクティブ状態の後に自動停止します。Sandboxを中断なく実行し続けるには、新しいSandboxを作成する際に自動停止間隔を`0`に設定します：
+自動削除間隔パラメータは、継続的に停止されているSandboxが自動的に削除されるまでの時間を設定します。デフォルトでは、Sandboxは自動的に削除されることはありません。
+
+このパラメータは以下のいずれかに設定できます：
+
+- 分単位の時間間隔
+- `-1`（自動削除機能を無効にする）
+- `0`（停止後すぐにSandboxが削除される）
+
+パラメータが設定されていない場合、Sandboxは自動的に削除されません。
 
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
 sandbox = daytona.create(CreateSandboxFromSnapshotParams(
     snapshot="my-snapshot-name",
-    auto_stop_interval=0,  # Disables the auto-stop feature - default is 15 minutes
+    auto_delete_interval=60,  # Sandboxが1時間停止した後に自動削除
+))
+
+# 停止後すぐにSandboxを削除
+
+sandbox.set_auto_delete_interval(0)
+
+# 自動削除を無効にする
+
+sandbox.set_auto_delete_interval(-1)
+
+```
+</TabItem>
+<TabItem label="TypeScript" icon="seti:typescript">
+```typescript
+const sandbox = await daytona.create({
+    snapshot: "my-snapshot-name",
+    autoDeleteInterval: 60, // Sandboxが1時間停止した後に自動削除
+});
+
+// 停止後すぐにSandboxを削除
+await sandbox.setAutoDeleteInterval(0)
+
+// 自動削除を無効にする
+await sandbox.setAutoDeleteInterval(-1)
+```
+
+</TabItem>
+</Tabs>
+
+## 無期限で実行
+
+デフォルトでは、Sandboxは15分間非アクティブ状態が続くと自動停止します。Sandboxを中断なく実行し続けるには、新しいSandboxを作成する際に自動停止間隔を`0`に設定します：
+
+<Tabs>
+<TabItem label="Python" icon="seti:python">
+```python
+sandbox = daytona.create(CreateSandboxFromSnapshotParams(
+    snapshot="my-snapshot-name",
+    auto_stop_interval=0,  # 自動停止機能を無効にします - デフォルトは15分です
 ))
 ```
 </TabItem>
@@ -382,7 +429,7 @@ sandbox = daytona.create(CreateSandboxFromSnapshotParams(
 ```typescript
 const sandbox = await daytona.create({
     snapshot: "my-snapshot-name",
-    autoStopInterval: 0, // Disables the auto-stop feature - default is 15 minutes
+    autoStopInterval: 0, // 自動停止機能を無効にします - デフォルトは15分です
 });
 ```
 </TabItem>

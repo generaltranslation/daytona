@@ -15,12 +15,12 @@ Daytona SDKは、PythonとTypeScriptを使用してLSPサーバーを作成す�
 ```python
 from daytona import Daytona, LspLanguageId
 
-# Create Sandbox
+# Sandboxを作成
 
 daytona = Daytona()
 sandbox = daytona.create()
 
-# Create LSP server for Python
+# Python用のLSPサーバーを作成
 
 lsp_server = sandbox.create_lsp_server(
 language_id=LspLanguageId.PYTHON,
@@ -33,13 +33,13 @@ path_to_project="workspace/project"
 ```typescript
 import { Daytona, LspLanguageId } from '@daytonaio/sdk'
 
-// Create sandbox
+// sandboxを作成
 const daytona = new Daytona()
 const sandbox = await daytona.create({
     language: 'typescript'
 })
 
-// Create LSP server for TypeScript
+// TypeScript用のLSPサーバーを作成
 const lspServer = await sandbox.createLspServer(
     LspLanguageId.TYPESCRIPT,
     "workspace/project"
@@ -58,7 +58,7 @@ Daytona SDKは、PythonとTypeScriptの`LspLanguageId`列挙型を通じて、�
 ```python
 from daytona import LspLanguageId
 
-# Available language IDs
+# 利用可能な言語ID
 
 LspLanguageId.PYTHON
 LspLanguageId.TYPESCRIPT
@@ -69,7 +69,7 @@ LspLanguageId.TYPESCRIPT
 ```typescript
 import { LspLanguageId } from '@daytonaio/sdk'
 
-// Available language IDs
+// 利用可能な言語ID
 LspLanguageId.PYTHON
 LspLanguageId.TYPESCRIPT
 ```

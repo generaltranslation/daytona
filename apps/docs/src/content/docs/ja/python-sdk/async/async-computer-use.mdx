@@ -272,13 +272,13 @@ async def click(x: int,
 **例**:
 
 ```python
-# Single left click
+# シングル左クリック
 result = await sandbox.computer_use.mouse.click(100, 200)
 
-# Double click
+# ダブルクリック
 double_click = await sandbox.computer_use.mouse.click(100, 200, "left", True)
 
-# Right click
+# 右クリック
 right_click = await sandbox.computer_use.mouse.click(100, 200, "right")
 ```
 
@@ -341,10 +341,10 @@ async def scroll(x: int, y: int, direction: str, amount: int = 1) -> bool
 **例**:
 
 ```python
-# Scroll up
+# 上にスクロール
 scroll_up = await sandbox.computer_use.mouse.scroll(100, 200, "up", 3)
 
-# Scroll down
+# 下にスクロール
 scroll_down = await sandbox.computer_use.mouse.scroll(100, 200, "down", 5)
 ```
 
@@ -381,16 +381,16 @@ async def type(text: str, delay: Optional[int] = None) -> None
 ```python
 try:
     await sandbox.computer_use.keyboard.type("Hello, World!")
-    print(f"Operation success")
+    print(f"操作成功")
 except Exception as e:
-    print(f"Operation failed: {e}")
+    print(f"操作失敗: {e}")
 
-# With delay between characters
+# 文字間に遅延を設定
 try:
     await sandbox.computer_use.keyboard.type("Slow typing", 100)
-    print(f"Operation success")
+    print(f"操作成功")
 except Exception as e:
-    print(f"Operation failed: {e}")
+    print(f"操作失敗: {e}")
 ```
 
 #### AsyncKeyboard.press
@@ -416,24 +416,24 @@ async def press(key: str, modifiers: Optional[List[str]] = None) -> None
 **例**:
 
 ```python
-# Press Enter
+# Enterキーを押す
 try:
     await sandbox.computer_use.keyboard.press("Return")
-    print(f"Operation success")
+    print(f"操作成功")
 except Exception as e:
-    print(f"Operation failed: {e}")
+    print(f"操作失敗: {e}")
 
-# Press Ctrl+C
+# Ctrl+Cを押す
 try:
     await sandbox.computer_use.keyboard.press("c", ["ctrl"])
-    print(f"Operation success")
+    print(f"操作成功")
 
-# Press Ctrl+Shift+T
+# Ctrl+Shift+Tを押す
 try:
     await sandbox.computer_use.keyboard.press("t", ["ctrl", "shift"])
-    print(f"Operation success")
+    print(f"操作成功")
 except Exception as e:
-    print(f"Operation failed: {e}")
+    print(f"操作失敗: {e}")
 ```
 
 #### AsyncKeyboard.hotkey
@@ -458,26 +458,26 @@ async def hotkey(keys: str) -> None
 **例**:
 
 ```python
-# Copy
+# コピー
 try:
     await sandbox.computer_use.keyboard.hotkey("ctrl+c")
-    print(f"Operation success")
+    print(f"操作成功")
 except Exception as e:
-    print(f"Operation failed: {e}")
+    print(f"操作失敗: {e}")
 
-# Paste
+# ペースト
 try:
     await sandbox.computer_use.keyboard.hotkey("ctrl+v")
-    print(f"Operation success")
+    print(f"操作成功")
 except Exception as e:
-    print(f"Operation failed: {e}")
+    print(f"操作失敗: {e}")
 
 # Alt+Tab
 try:
     await sandbox.computer_use.keyboard.hotkey("alt+tab")
-    print(f"Operation success")
+    print(f"操作成功")
 except Exception as e:
-    print(f"Operation failed: {e}")
+    print(f"操作失敗: {e}")
 ```
 
 ## AsyncScreenshot
@@ -513,7 +513,7 @@ async def take_full_screen(show_cursor: bool = False) -> ScreenshotResponse
 screenshot = await sandbox.computer_use.screenshot.take_full_screen()
 print(f"Screenshot size: {screenshot.width}x{screenshot.height}")
 
-# With cursor visible
+# カーソルを表示する場合
 with_cursor = await sandbox.computer_use.screenshot.take_full_screen(True)
 ```
 
@@ -570,15 +570,15 @@ async def take_compressed(
 **例**:
 
 ```python
-# Default compression
+# デフォルト圧縮
 screenshot = await sandbox.computer_use.screenshot.take_compressed()
 
-# High quality JPEG
+# 高品質JPEG
 jpeg = await sandbox.computer_use.screenshot.take_compressed(
     ScreenshotOptions(format="jpeg", quality=95, show_cursor=True)
 )
 
-# Scaled down PNG
+# 縮小されたPNG
 scaled = await sandbox.computer_use.screenshot.take_compressed(
     ScreenshotOptions(format="png", scale=0.5)
 )

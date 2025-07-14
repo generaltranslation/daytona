@@ -92,7 +92,6 @@ export const getSidebarConfig = (
           attrs: {
             icon: 'terminal.svg',
           },
-          relatedGroupCategory: NavigationCategory.GENERAL,
         },
       ],
     },
@@ -102,6 +101,14 @@ export const getSidebarConfig = (
       homePageHref: localizePath('/docs', locale),
       category: NavigationCategory.GENERAL,
       entries: [
+        {
+          type: 'link',
+          href: localizePath('/docs', locale),
+          label: labels['sidebarconfig.home'],
+          attrs: {
+            icon: 'home.svg',
+          },
+        },
         {
           type: 'link',
           href: localizePath('/docs/getting-started', locale),
@@ -318,6 +325,11 @@ export const getSidebarConfig = (
       entries: [
         {
           type: 'link',
+          href: '/docs/typescript-sdk',
+          label: labels['sidebarconfig.home'],
+        },
+        {
+          type: 'link',
           href: localizePath('/docs/typescript-sdk/daytona', locale),
           label: labels['sidebarconfig.daytona'],
         },
@@ -333,6 +345,13 @@ export const getSidebarConfig = (
       label: labels['sidebarconfig.pythonSdkReference'],
       homePageHref: localizePath('/docs/python-sdk', locale),
       category: NavigationCategory.PYTHON_SDK,
+      entries: [
+        {
+          type: 'link',
+          href: localizePath('/docs/python-sdk', locale),
+          label: labels['sidebarconfig.home'],
+        },
+      ],
     },
     {
       type: 'group',

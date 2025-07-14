@@ -38,14 +38,12 @@ new Git(
 add(path: string, files: string[]): Promise<void>
 ```
 
-指定されたファイルを次のコミット用にステージします。コマンドラインで
-'git add'を実行するのと同様です。
+次のコミットのために指定されたファイルをステージングします。コマンドラインで'git add'を実行するのと同様です。
 
 **パラメータ**:
 
-- `path` _string_ - Gitリポジトリルートへのパス。相対パスはユーザーの
-    ルートディレクトリを基準に解決されます。
-- `files` _string\[\]_ - ステージするファイルパスまたはディレクトリのリスト（リポジトリルートからの相対パス）
+- `path` _string_ - Gitリポジトリルートへのパス。相対パスはユーザーのルートディレクトリを基準に解決されます。
+- `files` _string\[\]_ - ステージングするファイルパスまたはディレクトリのリスト。リポジトリルートからの相対パス
 
 
 **戻り値**:
@@ -55,12 +53,12 @@ add(path: string, files: string[]): Promise<void>
 **例:**
 
 ```ts
-// 単一ファイルをステージ
+// 単一ファイルをステージング
 await git.add('workspace/repo', ['file.txt']);
 ```
 
 ```ts
-// リポジトリ全体をステージ
+// リポジトリ全体をステージング
 await git.add('workspace/repo', ['.']);
 ```
 
@@ -76,8 +74,7 @@ branches(path: string): Promise<ListBranchResponse>
 
 **パラメータ**:
 
-- `path` _string_ - Gitリポジトリルートへのパス。相対パスはユーザーの
-    ルートディレクトリを基準に解決されます。
+- `path` _string_ - Gitリポジトリルートへのパス。相対パスはユーザーのルートディレクトリを基準に解決されます。
 
 
 **戻り値**:
@@ -103,9 +100,8 @@ checkoutBranch(path: string, branch: string): Promise<void>
 
 **パラメータ**:
 
-- `path` _string_ - Gitリポジトリルートへのパス。相対パスはユーザーの
-    ルートディレクトリを基準に解決されます。
-- `branch` _string_ - チェックアウトするブランチ名
+- `path` _string_ - Gitリポジトリルートへのパス。相対パスはユーザーのルートディレクトリを基準に解決されます。
+- `branch` _string_ - チェックアウトするブランチの名前
 
 
 **戻り値**:
@@ -132,17 +128,14 @@ clone(
 password?: string): Promise<void>
 ```
 
-指定されたパスにGitリポジトリをクローンします。特定のブランチや
-コミットのクローンをサポートし、認証情報が提供された場合は
-リモートリポジトリで認証を行うことができます。
+指定されたパスにGitリポジトリをクローンします。特定のブランチやコミットのクローンをサポートし、認証情報が提供されている場合はリモートリポジトリで認証できます。
 
 **パラメータ**:
 
 - `url` _string_ - クローン元のリポジトリURL
-- `path` _string_ - リポジトリをクローンするパス。相対パスはユーザーの
-    ルートディレクトリを基準に解決されます。
-- `branch?` _string_ - クローンする特定のブランチ。指定されない場合、デフォルトブランチをクローンします
-- `commitId?` _string_ - クローンする特定のコミット。指定された場合、リポジトリはこのコミットでdetached HEAD状態になります
+- `path` _string_ - リポジトリをクローンするパス。相対パスはユーザーのルートディレクトリを基準に解決されます。
+- `branch?` _string_ - クローンする特定のブランチ。指定されていない場合は、デフォルトブランチをクローンします
+- `commitId?` _string_ - クローンする特定のコミット。指定された場合、リポジトリはこのコミットでdetached HEADの状態になります
 - `username?` _string_ - 認証用のGitユーザー名
 - `password?` _string_ - 認証用のGitパスワードまたはトークン
 
@@ -193,12 +186,11 @@ commit(
 email: string): Promise<GitCommitResponse>
 ```
 
-ステージされた変更をコミットします。
+ステージングされた変更をコミットします。
 
 **パラメータ**:
 
-- `path` _string_ - Gitリポジトリルートへのパス。相対パスはユーザーの
-    ルートディレクトリを基準に解決されます。
+- `path` _string_ - Gitリポジトリルートへのパス。相対パスはユーザーのルートディレクトリを基準に解決されます。
 - `message` _string_ - 変更を説明するコミットメッセージ
 - `author` _string_ - コミット作成者の名前
 - `email` _string_ - コミット作成者のメールアドレス
@@ -211,7 +203,7 @@ email: string): Promise<GitCommitResponse>
 **例:**
 
 ```ts
-// 変更をステージしてコミット
+// 変更をステージングしてコミット
 await git.add('workspace/repo', ['README.md']);
 await git.commit(
   'workspace/repo',
@@ -386,9 +378,9 @@ Gitリポジトリの現在のステータスを取得します。
 
 ```ts
 const status = await sandbox.git.status('workspace/repo');
-console.log(`Current branch: ${status.currentBranch}`);
-console.log(`Commits ahead: ${status.ahead}`);
-console.log(`Commits behind: ${status.behind}`);
+console.log(`現在のブランチ: ${status.currentBranch}`);
+console.log(`先行コミット数: ${status.ahead}`);
+console.log(`遅れコミット数: ${status.behind}`);
 ```
 
 ***

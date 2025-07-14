@@ -22,7 +22,7 @@ Daytona SDKは、PythonとTypeScriptを使用してSandbox内のファイルと�
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
-# List files in a directory
+# ディレクトリ内のファイルを一覧表示
 files = workspace.fs.list_files("/workspace")
 for file in files:
     print(f"Name: {file.name}")
@@ -34,7 +34,7 @@ for file in files:
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-// List files in a directory
+// ディレクトリ内のファイルを一覧表示
 const files = await workspace.fs.listFiles("/workspace");
 
 files.forEach(file => {
@@ -55,10 +55,10 @@ Daytona SDKは、PythonとTypeScriptを使用して特定の権限でディレ�
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
-# Create a directory
+# ディレクトリを作成
 workspace.fs.create_folder("/workspace/new-dir")
 
-# Create with specific permissions
+# 特定の権限で作成
 
 workspace.fs.create_folder("/workspace/new-dir", "755")
 
@@ -66,10 +66,10 @@ workspace.fs.create_folder("/workspace/new-dir", "755")
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-// Create a directory
+// ディレクトリを作成
 await workspace.fs.createFolder("/workspace/new-dir");
 
-// Create with specific permissions
+// 特定の権限で作成
 await workspace.fs.createFolder("/workspace/new-dir", "755");
 ```
 
@@ -83,18 +83,18 @@ Daytona SDKは、PythonとTypeScriptを使用してSandbox内のファイルの�
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
-# Upload a file
+# ファイルをアップロード
 with open("local_file.txt", "rb") as f:
     content = f.read()
 workspace.fs.upload_file("/workspace/remote_file.txt", content)
 
-# Download a file
+# ファイルをダウンロード
 
 content = workspace.fs.download_file("/workspace/remote_file.txt")
 with open("local_file.txt", "wb") as f:
     f.write(content)
 
-# Delete a file
+# ファイルを削除
 
 workspace.fs.delete_file("/workspace/file.txt")
 
@@ -102,7 +102,7 @@ workspace.fs.delete_file("/workspace/file.txt")
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-// Upload a file
+// ファイルをアップロード
 const fileContent = new File(
     [Buffer.from('Hello, World!')],
     'data.txt',
@@ -110,11 +110,11 @@ const fileContent = new File(
 );
 await workspace.fs.uploadFile("/workspace/remote_file.txt", fileContent);
 
-// Download a file
+// ファイルをダウンロード
 const downloadedFile = await workspace.fs.downloadFile("/workspace/remote_file.txt");
 console.log('File content:', downloadedFile.toString())
 
-// Delete a file
+// ファイルを削除
 await workspace.fs.deleteFile("/workspace/file.txt");
 ```
 
@@ -132,10 +132,10 @@ Daytona SDKは、PythonとTypeScriptを使用してファイル権限の設定�
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
-# Set file permissions
+# ファイル権限を設定
 workspace.fs.set_file_permissions("/workspace/file.txt", "644")
 
-# Get file permissions
+# ファイル権限を取得
 
 file_info = workspace.fs.get_file_info("/workspace/file.txt")
 print(f"Permissions: {file_info.permissions}")
@@ -144,10 +144,10 @@ print(f"Permissions: {file_info.permissions}")
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-// Set file permissions
+// ファイル権限を設定
 await workspace.fs.setFilePermissions("/workspace/file.txt", { mode: "644" });
 
-// Get file permissions
+// ファイル権限を取得
 const fileInfo = await workspace.fs.getFileDetails("/workspace/file.txt");
 console.log(`Permissions: ${fileInfo.permissions}`);
 ```
@@ -155,14 +155,14 @@ console.log(`Permissions: ${fileInfo.permissions}`);
 </TabItem>
 </Tabs>
 
-### ファイルの検索と置換
+### ファイル検索と置換
 
 Daytona SDKは、PythonとTypeScriptを使用してファイル内のテキストを検索し、ファイル内のテキストを置換するオプションを提供します。
 
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
-# Search for text in files; if a folder is specified, the search is recursive
+# ファイル内のテキストを検索；フォルダが指定された場合、検索は再帰的に行われます
 results = workspace.fs.find_files(
     path="/workspace/src",
     pattern="text-of-interest"
@@ -173,7 +173,7 @@ for match in results:
     print(f"Line content: {match.content}")
     print("\n")
 
-# Replace text in files
+# ファイル内のテキストを置換
 
 workspace.fs.replace_in_files(
     files=["/workspace/file1.txt", "/workspace/file2.txt"],
@@ -185,7 +185,7 @@ workspace.fs.replace_in_files(
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-// Search for text in files; if a folder is specified, the search is recursive
+// ファイル内のテキストを検索；フォルダが指定された場合、検索は再帰的に行われます
 const results = await workspace.fs.findFiles({
     path="/workspace/src",
     pattern: "text-of-interest"
@@ -196,7 +196,7 @@ results.forEach(match => {
     console.log('Line content:', match.content)
 });
 
-// Replace text in files
+// ファイル内のテキストを置換
 await workspace.fs.replaceInFiles(
     ["/workspace/file1.txt", "/workspace/file2.txt"],
     "old_text",

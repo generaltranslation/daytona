@@ -40,7 +40,7 @@ new LspServer(
 completions(path: string, position: Position): Promise<CompletionList>
 ```
 
-ファイル内の位置で補完候補を取得します。
+ファイル内の位置での補完候補を取得します。
 
 **Parameters**:
 
@@ -64,7 +64,7 @@ completions(path: string, position: Position): Promise<CompletionList>
 **Example:**
 
 ```ts
-// Get completions at a specific position
+// 特定の位置での補完を取得
 const completions = await lsp.completions('workspace/project/src/index.ts', {
   line: 10,
   character: 15
@@ -96,7 +96,7 @@ didClose(path: string): Promise<void>
 **Example:**
 
 ```ts
-// When done editing a file
+// ファイルの編集が完了した時
 await lsp.didClose('workspace/project/src/index.ts');
 ```
 
@@ -122,9 +122,9 @@ didOpen(path: string): Promise<void>
 **Example:**
 
 ```ts
-// When opening a file for editing
+// 編集用にファイルを開く時
 await lsp.didOpen('workspace/project/src/index.ts');
-// Now can get completions, symbols, etc. for this file
+// これでこのファイルに対して補完、シンボルなどを取得できます
 ```
 
 ***
@@ -152,7 +152,7 @@ documentSymbols(path: string): Promise<LspSymbol[]>
 **Example:**
 
 ```ts
-// Get all symbols in a file
+// ファイル内のすべてのシンボルを取得
 const symbols = await lsp.documentSymbols('workspace/project/src/index.ts');
 symbols.forEach(symbol => {
   console.log(`${symbol.kind} ${symbol.name}: ${symbol.location}`);
@@ -184,7 +184,7 @@ Sandbox全体でクエリ文字列に一致するシンボルを検索します�
 **例:**
 
 ```ts
-// Search for all symbols containing "User"
+// "User"を含むすべてのシンボルを検索
 const symbols = await lsp.sandboxSymbols('User');
 symbols.forEach(symbol => {
   console.log(`${symbol.name} (${symbol.kind}) in ${symbol.location}`);
@@ -210,8 +210,8 @@ start(): Promise<void>
 
 ```ts
 const lsp = await sandbox.createLspServer('typescript', 'workspace/project');
-await lsp.start();  // Initialize the server
-// Now ready for LSP operations
+await lsp.start();  // サーバーを初期化
+// LSP操作の準備完了
 ```
 
 ***
@@ -222,8 +222,8 @@ await lsp.start();  // Initialize the server
 stop(): Promise<void>
 ```
 
-言語サーバーを停止します。LSPサーバーが不要になったときに呼び出して
-システムリソースを解放する必要があります。
+言語サーバーを停止します。LSPサーバーが不要になったときにシステムリソースを
+解放するために呼び出す必要があります。
 
 **戻り値**:
 
@@ -232,8 +232,8 @@ stop(): Promise<void>
 **例:**
 
 ```ts
-// When done with LSP features
-await lsp.stop();  // Clean up resources
+// LSP機能の使用が終了したとき
+await lsp.stop();  // リソースをクリーンアップ
 ```
 
 ***
@@ -269,7 +269,7 @@ Sandbox全体でクエリ文字列に一致するシンボルを検索します�
 
 サポートされている言語サーバーのタイプ。
 
-**Enum Members**:
+**列挙型メンバー**:
 
 - `JAVASCRIPT` ("javascript")
 - `PYTHON` ("python")
@@ -291,7 +291,7 @@ Sandbox全体でクエリ文字列に一致するシンボルを検索します�
 
 ```ts
 const position: Position = {
-  line: 10,     // Line 11 (zero-based)
-  character: 15  // Character 16 on the line (zero-based)
+  line: 10,     // 11行目 (ゼロベース)
+  character: 15  // 行内の16文字目 (ゼロベース)
 };
 ```

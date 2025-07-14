@@ -17,6 +17,13 @@ Daytona Sandboxを表します。
     ```ts
     SandboxDto.autoArchiveInterval
     ```
+- `autoDeleteInterval?` _number_ - 自動削除間隔（分）
+    
+    ##### Implementation of
+    
+    ```ts
+    SandboxDto.autoDeleteInterval
+    ```
 - `autoStopInterval?` _number_ - 自動停止間隔（分）
     
     ##### Implementation of
@@ -380,6 +387,40 @@ await sandbox.setAutoArchiveInterval(0);
 
 ***
 
+#### setAutoDeleteInterval()
+
+```ts
+setAutoDeleteInterval(interval: number): Promise<void>
+```
+
+Sandboxの自動削除間隔を設定します。
+
+Sandboxは、指定された間隔の間継続的に停止された後、自動的に削除されます。
+
+**パラメータ**:
+
+- `interval` _number_ - 継続的に停止されたSandboxが自動削除されるまでの分数。
+    自動削除を無効にするには負の値を設定します。停止時に即座に削除するには0を設定します。
+    デフォルトでは、自動削除は無効になっています。
+
+
+**戻り値**:
+
+- `Promise<void>`
+
+**例:**
+
+```ts
+// 1時間後に自動削除
+await sandbox.setAutoDeleteInterval(60);
+// または停止時に即座に削除
+await sandbox.setAutoDeleteInterval(0);
+// または自動削除を無効化
+await sandbox.setAutoDeleteInterval(-1);
+```
+
+***
+
 #### setAutostopInterval()
 
 ```ts
@@ -388,14 +429,14 @@ setAutostopInterval(interval: number): Promise<void>
 
 Sandboxの自動停止間隔を設定します。
 
-Sandboxは指定された間隔でアイドル状態（新しいイベントなし）になった後、自動的に停止します。
-イベントには、sdkを通じたSandboxの状態変更や相互作用が含まれます。
+Sandboxは、指定された間隔の間アイドル状態（新しいイベントなし）が続いた後、自動的に停止します。
+イベントには、SDKを通じたSandboxの状態変更や相互作用が含まれます。
 Sandbox Previewsを使用した相互作用は含まれません。
 
 **パラメータ**:
 
 - `interval` _number_ - 自動停止までの非アクティブ時間（分）。
-    0に設定すると自動停止を無効にします。デフォルトは15分です。
+    自動停止を無効にするには0を設定します。デフォルトは15分です。
 
 
 **戻り値**:
@@ -411,7 +452,7 @@ Sandbox Previewsを使用した相互作用は含まれません。
 ```ts
 // 1時間後に自動停止
 await sandbox.setAutostopInterval(60);
-// または自動停止を無効にする
+// または自動停止を無効化
 await sandbox.setAutostopInterval(0);
 ```
 
@@ -471,7 +512,7 @@ Sandboxを開始します。
 
 **例外**:
 
-- `DaytonaError` - Sandboxの開始に失敗またはタイムアウトした場合
+- `DaytonaError` - Sandboxの開始に失敗した場合またはタイムアウトした場合
 
 **例:**
 
@@ -521,8 +562,7 @@ waitUntilStarted(timeout?: number): Promise<void>
 
 Sandboxが'started'状態に達するまで待機します。
 
-このメソッドは、Sandboxが'started'状態に達するか、
-エラーが発生するまでSandboxのステータスをポーリングします。
+このメソッドは、Sandboxが'started'状態に達するか、エラーが発生するまでSandboxのステータスをポーリングします。
 
 **パラメータ**:
 
@@ -548,8 +588,7 @@ waitUntilStopped(timeout?: number): Promise<void>
 
 Sandboxが'stopped'状態に達するまで待機します。
 
-このメソッドは、Sandboxが'stopped'状態に達するか、
-エラーが発生するまでSandboxのステータスをポーリングします。
+このメソッドは、Sandboxが'stopped'状態に達するか、エラーが発生するまでSandboxのステータスをポーリングします。
 
 **パラメータ**:
 

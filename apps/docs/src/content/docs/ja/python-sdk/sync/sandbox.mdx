@@ -35,6 +35,7 @@ Daytona Sandboxを表します。
 - `backup_created_at` _str_ - バックアップが作成された日時。
 - `auto_stop_interval` _int_ - 自動停止間隔（分単位）。
 - `auto_archive_interval` _int_ - 自動アーカイブ間隔（分単位）。
+- `auto_delete_interval` _int_ - 自動削除間隔（分単位）。
 - `runner_domain` _str_ - Sandboxランナーのドメイン名。
 - `volumes` _List[str]_ - Sandboxに接続されたボリューム。
 - `build_info` _str_ - 動的ビルドから作成された場合のSandboxのビルド情報。
@@ -134,7 +135,7 @@ def set_labels(labels: Dict[str, str]) -> Dict[str, str]
 
 Sandboxのラベルを設定します。
 
-ラベルはSandboxを整理し、識別するために使用できるキーと値のペアです。
+ラベルは、Sandboxを整理し識別するために使用できるキーと値のペアです。
 
 **引数**:
 
@@ -183,7 +184,7 @@ Sandboxを開始し、準備が完了するまで待機します。
 
 ```python
 sandbox = daytona.get_current_sandbox("my-sandbox")
-sandbox.start(timeout=40)  # Wait up to 40 seconds
+sandbox.start(timeout=40)  # 最大40秒待機
 print("Sandbox started successfully")
 ```
 
@@ -242,7 +243,8 @@ Sandboxを削除します。
 def wait_for_sandbox_start(timeout: Optional[float] = 60) -> None
 ```
 
-Sandboxが「開始済み」状態に達するまで待機します。Sandboxが「開始済み」状態に達するか、エラーが発生するか、タイムアウトするまでSandboxのステータスをポーリングします。
+Sandboxが'started'状態に達するまで待機します。Sandboxのステータスを
+'started'状態に達するか、エラーが発生するか、タイムアウトするまでポーリングします。
 
 **引数**:
 
@@ -264,7 +266,8 @@ Sandboxが「開始済み」状態に達するまで待機します。Sandboxが
 def wait_for_sandbox_stop(timeout: Optional[float] = 60) -> None
 ```
 
-Sandboxが「停止済み」状態に達するまで待機します。Sandboxが「停止済み」状態に達するか、エラーが発生するか、タイムアウトするまでSandboxのステータスをポーリングします。Sandboxが停止するまで最大60秒間待機します。
+Sandboxが'stopped'状態に達するまで待機します。Sandboxのステータスを
+'stopped'状態に達するか、エラーが発生するか、タイムアウトするまでポーリングします。Sandboxが停止するまで最大60秒間待機します。
 
 **引数**:
 
@@ -302,9 +305,9 @@ Sandbox Previewsを使用した相互作用は含まれません。
 **例**:
 
 ```python
-# Auto-stop after 1 hour
+# 1時間後に自動停止
 sandbox.set_autostop_interval(60)
-# Or disable auto-stop
+# または自動停止を無効にする
 sandbox.set_autostop_interval(0)
 ```
 
@@ -333,10 +336,39 @@ Sandboxは指定された間隔で継続的に停止された後、自動的に�
 **例**:
 
 ```python
-# Auto-archive after 1 hour
-sandbox.set_autoarchive_interval(60)
-# Or use the maximum interval
-sandbox.set_autoarchive_interval(0)
+# 1時間後に自動アーカイブ
+sandbox.set_auto_archive_interval(60)
+# または最大間隔を使用
+sandbox.set_auto_archive_interval(0)
+```
+
+#### Sandbox.set\_auto\_delete\_interval
+
+```python
+@intercept_errors(message_prefix="Failed to set auto-delete interval: ")
+def set_auto_delete_interval(interval: int) -> None
+```
+
+Sandboxの自動削除間隔を設定します。
+
+Sandboxは指定された間隔で継続的に停止された後、自動的に削除されます。
+
+**引数**:
+
+- `interval` _int_ - 継続的に停止されたSandboxが自動削除されるまでの時間（分）。
+  自動削除を無効にするには負の値に設定します。停止時に即座に削除するには0に設定します。
+  デフォルトでは、自動削除は無効になっています。
+  
+
+**例**:
+
+```python
+# 1時間後に自動削除
+sandbox.set_auto_delete_interval(60)
+# または停止時に即座に削除
+sandbox.set_auto_delete_interval(0)
+# または自動削除を無効にする
+sandbox.set_auto_delete_interval(-1)
 ```
 
 #### Sandbox.get\_preview\_link
@@ -347,7 +379,7 @@ def get_preview_link(port: int) -> PortPreviewUrl
 ```
 
 指定されたポートでsandboxのプレビューリンクを取得します。ポートが閉じている場合は、
-自動的に開かれます。プライベートsandboxの場合、URLへのアクセスを許可するためのトークンが含まれます。
+自動的に開かれます。プライベートsandboxの場合、URLへのアクセスを許可するトークンが含まれます。
 
 **引数**:
 
@@ -379,7 +411,7 @@ sandboxをアーカイブし、非アクティブにして状態を保持しま�
 アーカイブされると、ファイルシステム全体の状態がコスト効率の良いオブジェクトストレージに移動され、
 sandboxを長期間利用可能に保つことができます。アーカイブ状態と
 停止状態のトレードオフは、アーカイブされたsandboxの開始にはサイズに応じてより多くの時間がかかることです。
-Sandboxはアーカイブする前に停止する必要があります。
+Sandboxはアーカイブ前に停止されている必要があります。
 
 
 ## Resources
@@ -405,7 +437,7 @@ Sandboxのリソース設定。
 resources = Resources(
     cpu=2,
     memory=4,  # 4GiB RAM
-    disk=20,   # 20GiB disk
+    disk=20,   # 20GiB ディスク
     gpu=1
 )
 params = CreateSandboxFromImageParams(

@@ -272,13 +272,13 @@ def click(x: int,
 **Example**:
 
 ```python
-# Single left click
+# シングル左クリック
 result = sandbox.computer_use.mouse.click(100, 200)
 
-# Double click
+# ダブルクリック
 double_click = sandbox.computer_use.mouse.click(100, 200, "left", True)
 
-# Right click
+# 右クリック
 right_click = sandbox.computer_use.mouse.click(100, 200, "right")
 ```
 
@@ -341,10 +341,10 @@ def scroll(x: int, y: int, direction: str, amount: int = 1) -> bool
 **Example**:
 
 ```python
-# Scroll up
+# 上にスクロール
 scroll_up = sandbox.computer_use.mouse.scroll(100, 200, "up", 3)
 
-# Scroll down
+# 下にスクロール
 scroll_down = sandbox.computer_use.mouse.scroll(100, 200, "down", 5)
 ```
 
@@ -385,7 +385,7 @@ try:
 except Exception as e:
     print(f"Operation failed: {e}")
 
-# With delay between characters
+# 文字間に遅延を設定
 try:
     sandbox.computer_use.keyboard.type("Slow typing", 100)
     print(f"Operation success")
@@ -416,19 +416,19 @@ def press(key: str, modifiers: Optional[List[str]] = None) -> None
 **Example**:
 
 ```python
-# Press Enter
+# Enterキーを押す
 try:
     sandbox.computer_use.keyboard.press("Return")
     print(f"Operation success")
 except Exception as e:
     print(f"Operation failed: {e}")
 
-# Press Ctrl+C
+# Ctrl+Cを押す
 try:
     sandbox.computer_use.keyboard.press("c", ["ctrl"])
     print(f"Operation success")
 
-# Press Ctrl+Shift+T
+# Ctrl+Shift+Tを押す
 try:
     sandbox.computer_use.keyboard.press("t", ["ctrl", "shift"])
     print(f"Operation success")
@@ -458,14 +458,14 @@ def hotkey(keys: str) -> None
 **Example**:
 
 ```python
-# Copy
+# コピー
 try:
     sandbox.computer_use.keyboard.hotkey("ctrl+c")
     print(f"Operation success")
 except Exception as e:
     print(f"Operation failed: {e}")
 
-# Paste
+# ペースト
 try:
     sandbox.computer_use.keyboard.hotkey("ctrl+v")
     print(f"Operation success")
@@ -513,7 +513,7 @@ def take_full_screen(show_cursor: bool = False) -> ScreenshotResponse
 screenshot = sandbox.computer_use.screenshot.take_full_screen()
 print(f"Screenshot size: {screenshot.width}x{screenshot.height}")
 
-# With cursor visible
+# カーソルを表示する場合
 with_cursor = sandbox.computer_use.screenshot.take_full_screen(True)
 ```
 
@@ -570,15 +570,15 @@ def take_compressed(
 **例**:
 
 ```python
-# Default compression
+# デフォルト圧縮
 screenshot = sandbox.computer_use.screenshot.take_compressed()
 
-# High quality JPEG
+# 高品質JPEG
 jpeg = sandbox.computer_use.screenshot.take_compressed(
     ScreenshotOptions(format="jpeg", quality=95, show_cursor=True)
 )
 
-# Scaled down PNG
+# 縮小されたPNG
 scaled = sandbox.computer_use.screenshot.take_compressed(
     ScreenshotOptions(format="png", scale=0.5)
 )

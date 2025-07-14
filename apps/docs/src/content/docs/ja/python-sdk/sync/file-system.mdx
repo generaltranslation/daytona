@@ -134,7 +134,7 @@ Sandboxからファイルをダウンロードし、ストリームを使用し�
 local_path = "local_copy.txt"
 sandbox.fs.download_file("tmp/large_file.txt", local_path)
 size_mb = os.path.getsize(local_path) / 1024 / 1024
-print(f"Size of the downloaded file {local_path}: {size_mb} MB")
+print(f"ダウンロードしたファイル {local_path} のサイズ: {size_mb} MB")
 ```
 
 #### FileSystem.find\_files
@@ -165,7 +165,7 @@ grepコマンドと同様に、パターンを含むファイルを検索しま�
 **例**:
 
 ```python
-# Search for TODOs in Python files
+# PythonファイルでTODOを検索
 matches = sandbox.fs.find_files("workspace/src", "TODO:")
 for match in matches:
     print(f"{match.file}:{match.line}: {match.content.strip()}")
@@ -202,13 +202,13 @@ def get_file_info(path: str) -> FileInfo
 **例**:
 
 ```python
-# Get file metadata
+# ファイルメタデータを取得
 info = sandbox.fs.get_file_info("workspace/data/file.txt")
 print(f"Size: {info.size} bytes")
 print(f"Modified: {info.mod_time}")
 print(f"Mode: {info.mode}")
 
-# Check if path is a directory
+# パスがディレクトリかどうかを確認
 info = sandbox.fs.get_file_info("workspace/data")
 if info.is_dir:
     print("Path is a directory")
@@ -221,7 +221,7 @@ if info.is_dir:
 def list_files(path: str) -> List[FileInfo]
 ```
 
-指定されたパス内のファイルとディレクトリをリストし、それらの情報を返します。ls -lコマンドと同様です。
+指定されたパス内のファイルとディレクトリをリストし、その情報を返します。ls -lコマンドと同様です。
 
 **引数**:
 
@@ -238,15 +238,15 @@ def list_files(path: str) -> List[FileInfo]
 **例**:
 
 ```python
-# List directory contents
+# ディレクトリの内容をリスト
 files = sandbox.fs.list_files("workspace/data")
 
-# Print files and their sizes
+# ファイルとそのサイズを出力
 for file in files:
     if not file.is_dir:
         print(f"{file.name}: {file.size} bytes")
 
-# List only directories
+# ディレクトリのみをリスト
 dirs = [f for f in files if f.is_dir]
 print("Subdirectories:", ", ".join(d.name for d in dirs))
 ```
@@ -271,19 +271,19 @@ def move_files(source: str, destination: str) -> None
 **例**:
 
 ```python
-# Rename a file
+# ファイルの名前を変更
 sandbox.fs.move_files(
     "workspace/data/old_name.txt",
     "workspace/data/new_name.txt"
 )
 
-# Move a file to a different directory
+# ファイルを別のディレクトリに移動
 sandbox.fs.move_files(
     "workspace/data/file.txt",
     "workspace/archive/file.txt"
 )
 
-# Move a directory
+# ディレクトリを移動
 sandbox.fs.move_files(
     "workspace/old_dir",
     "workspace/new_dir"
@@ -388,7 +388,7 @@ def set_file_permissions(path: str,
 - `path` _str_ - ファイルまたはディレクトリのパス。相対パスはユーザーの
   ルートディレクトリを基準に解決されます。
 - `mode` _Optional[str]_ - 8進形式のファイルモード/権限
-  （例：rw-r--r--の場合は"644"）。
+  （例："644"はrw-r--r--）。
 - `owner` _Optional[str]_ - ファイルのユーザー所有者。
 - `group` _Optional[str]_ - ファイルのグループ所有者。
   
@@ -465,7 +465,7 @@ def upload_file(local_path: str,
 - `local_path` _str_ - アップロードするローカルファイルのパス。
 - `remote_path` _str_ - Sandbox内の宛先ファイルのパス。相対パスは
   ユーザーのルートディレクトリを基準に解決されます。
-- `timeout` _int_ - アップロード操作のタイムアウト（秒）。0はタイムアウトなしを意味します。デフォルトは30分です。
+- `timeout` _int_ - アップロード操作のタイムアウト（秒）。0は無制限を意味します。デフォルトは30分です。
   
 
 **例**:
@@ -487,7 +487,7 @@ def upload_files(files: List[FileUpload], timeout: int = 30 * 60) -> None
 **引数**:
 
 - `files` _List[FileUpload]_ - アップロードするファイルのリスト。
-- `timeout` _int_ - アップロード操作のタイムアウト（秒）。0はタイムアウトなしを意味します。デフォルトは30分です。
+- `timeout` _int_ - アップロード操作のタイムアウト（秒）。0は無制限を意味します。デフォルトは30分です。
 
 **例**:
 

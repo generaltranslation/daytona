@@ -104,7 +104,7 @@ daytona autocomplete [bash|zsh|fish|powershell] [flags]
 __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
-| `--help` |  | help for daytona |
+| `--help` |  | daytonaのヘルプ |
 
 <Aside type="note">
 bashシェル環境を使用している場合は、完全な自動補完機能を利用するためにbash-completionがインストールされていることを確認してください。
@@ -167,7 +167,7 @@ __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
 | `--format` | `-f` | 出力形式。次のいずれかである必要があります (yaml, json) |
-| `--help` |  | daytonaのヘルプ |
+| `--help` |  | daytona のヘルプ |
 
 ## daytona build logs
 
@@ -285,7 +285,7 @@ __フラグ__
 
 ## daytona env
 
-すべてのターゲットとワークスペースに追加されるサーバー環境変数を管理する
+すべてのターゲットとワークスペースに追加されるサーバー環境変数を管理します
 
 ```shell
 daytona env [flags]
@@ -322,7 +322,7 @@ __フラグ__
 | :--- | :---- | :---------- |
 | `--format` | `-f` | 出力形式。次のいずれかである必要があります (yaml, json) |
 | `--show-values` | `-v` | 環境変数の値を表示 |
-| `--help` |  | daytona のヘルプ |
+| `--help` |  | daytonaのヘルプ |
 
 ## daytona env set
 
@@ -353,7 +353,7 @@ __フラグ__
 
 ## daytona git-provider
 
-Git プロバイダー設定を管理
+Gitプロバイダー設定を管理する
 
 ```shell
 daytona git-provider [flags]
@@ -362,7 +362,7 @@ daytona git-provider [flags]
 __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
-| `--help` |  | daytona のヘルプ |
+| `--help` |  | daytonaのヘルプ |
 
 ## daytona git-provider create
 
@@ -427,7 +427,7 @@ __フラグ__
 
 ## daytona ide
 
-デフォルトのIDEを選択
+デフォルトのIDEを選択する
 
 ```shell
 daytona ide [flags]
@@ -436,7 +436,7 @@ daytona ide [flags]
 __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
-| `--help` |  | help for daytona |
+| `--help` |  | daytonaのヘルプ |
 
 ## daytona info
 
@@ -507,7 +507,7 @@ __フラグ__
 | :--- | :---- | :---------- |
 | `--branch` | `-b` | プリビルド用のGitブランチ |
 | `--commit-interval` | `-c` | プリビルドを実行するコミット間隔 - プッシュイベントを無視する場合は空白のままにする |
-| `--retention` | `-r` | 同時に保存される結果ビルドの最大数 |
+| `--retention` | `-r` | 一度に保存される結果ビルドの最大数 |
 | `--run` |  | 追加後にプリビルドを一度実行する |
 | `--trigger-files` | `-t` | 変更時に明示的にプリビルドをトリガーするファイルのフルパス |
 | `--help` |  | daytonaのヘルプ |
@@ -646,7 +646,7 @@ __フラグ__
 
 ## daytona provider
 
-プロバイダーを管理
+プロバイダーを管理する
 
 ```shell
 daytona provider [flags]
@@ -655,7 +655,7 @@ daytona provider [flags]
 __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
-| `--help` |  | help for daytona |
+| `--help` |  | daytonaのヘルプ |
 
 ## daytona provider install
 
@@ -687,7 +687,7 @@ __フラグ__
 
 ## daytona provider uninstall
 
-プロバイダーをアンインストール
+プロバイダーをアンインストールする
 
 ```shell
 daytona provider uninstall [flags]
@@ -765,7 +765,7 @@ __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
 | `--format` | `-f` | 出力形式。次のいずれかである必要があります (yaml, json) |
-| `--key` | `-k` | APIキーを表示 |
+| `--key` | `-k` | API Keyを表示 |
 | `--help` |  | daytonaのヘルプ |
 
 ## daytona runner configure
@@ -826,11 +826,11 @@ daytona runner restart [flags]
 __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
-| `--help` |  | help for daytona |
+| `--help` |  | daytonaのヘルプ |
 
 ## daytona runner serve
 
-ランナーをフォアグラウンドで開始します
+フォアグラウンドでランナーを開始します
 
 ```shell
 daytona runner serve [flags]
@@ -852,7 +852,7 @@ daytona runner start [flags]
 __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
-| `--help` |  | help for daytona |
+| `--help` |  | daytonaのヘルプ |
 
 ## daytona runner stop
 
@@ -932,14 +932,14 @@ daytona server logs [flags]
 __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
-| `--file` |  | 特定のログファイルを読み込む |
+| `--file` |  | 特定のログファイルを読み取る |
 | `--follow` | `-f` | ログを追跡する |
-| `--local` | `-l` | ローカルサーバーのログファイルを読み込む |
+| `--local` | `-l` | ローカルサーバーのログファイルを読み取る |
 | `--help` |  | daytonaのヘルプ |
 
 ## daytona server logs list
 
-Daytona Server ログファイルを一覧表示します
+Daytona Serverログファイルを一覧表示します
 
 ```shell
 daytona server logs list [flags]
@@ -948,7 +948,7 @@ daytona server logs list [flags]
 __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
-| `--help` |  | daytona のヘルプ |
+| `--help` |  | daytonaのヘルプ |
 
 ## daytona server restart
 
@@ -1002,7 +1002,7 @@ __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
 | `--yes` | `-y` | プロンプトなしで削除を確認する |
-| `--help` |  | daytonaのヘルプ |
+| `--help` |  | daytona のヘルプ |
 
 ## daytona server runner list
 
@@ -1144,7 +1144,7 @@ __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
 | `--yes` | `-y` | プロンプトなしですべてのターゲットの削除を確認 |
-| `--help` |  | daytonaのヘルプ |
+| `--help` |  | daytona のヘルプ |
 
 ## daytona target-config list
 
@@ -1229,9 +1229,9 @@ daytona target list [flags]
 __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
-| `--format` | `-f` | 出力形式。(yaml, json) のいずれかである必要があります |
+| `--format` | `-f` | 出力形式。次のいずれかである必要があります (yaml, json) |
 | `--show-options` | `-v` | ターゲットオプションを表示 |
-| `--help` |  | daytona のヘルプ |
+| `--help` |  | daytonaのヘルプ |
 
 ## daytona target logs
 
@@ -1354,7 +1354,7 @@ daytona telemetry enable [flags]
 __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
-| `--help` |  | help for daytona |
+| `--help` |  | daytonaのヘルプ |
 
 ## daytona template
 
@@ -1385,7 +1385,7 @@ __フラグ__
 | `--custom-image-user` |  | フラグ値として渡されたカスタムイメージユーザーでワークスペースを作成する；--custom-imageフラグも設定する必要があります |
 | `--devcontainer-path` |  | フラグ値として渡されたパスでdevcontainerビルダーを自動的に割り当てる |
 | `--env` |  | 環境変数を指定する（例：--env 'KEY1=VALUE1' --env 'KEY2=VALUE2' ...） |
-| `--git-provider-config` |  | GitプロバイダーのコンフィグレーションIDまたはエイリアスを指定する |
+| `--git-provider-config` |  | GitプロバイダーのコンフィギュレーションIDまたはエイリアスを指定する |
 | `--label` |  | ラベルを指定する（例：--label 'label.key1=VALUE1' --label 'label.key2=VALUE2' ...） |
 | `--manual` |  | Gitリポジトリを手動で入力する |
 | `--name` |  | ワークスペーステンプレート名を指定する |
@@ -1402,9 +1402,9 @@ daytona template delete [flags]
 __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
-| `--all` | `-a` | すべてのワークスペーステンプレートを削除する |
-| `--force` | `-f` | プリビルドを強制削除する |
-| `--yes` | `-y` | プロンプトなしで削除を確認する |
+| `--all` | `-a` | すべてのワークスペーステンプレートを削除 |
+| `--force` | `-f` | プリビルドを強制削除 |
+| `--yes` | `-y` | プロンプトなしで削除を確認 |
 | `--help` |  | daytonaのヘルプ |
 
 ## daytona template export
@@ -1433,7 +1433,7 @@ daytona template import [flags]
 __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
-| `--file` | `-f` | JSONファイルからワークスペーステンプレートをインポートします。標準入力から読み取るには'-'を使用してください。 |
+| `--file` | `-f` | JSONファイルからワークスペーステンプレートをインポートします。stdinから読み取るには'-'を使用してください。 |
 | `--help` |  | daytonaのヘルプ |
 
 ## daytona template info
@@ -1475,7 +1475,7 @@ daytona template set-default [flags]
 __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
-| `--help` |  | daytona のヘルプ |
+| `--help` |  | daytonaのヘルプ |
 
 ## daytona template update
 
@@ -1488,7 +1488,7 @@ daytona template update [flags]
 __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
-| `--help` |  | help for daytona |
+| `--help` |  | daytona のヘルプ |
 
 ## daytona update
 
@@ -1519,7 +1519,7 @@ __フラグ__
 
 ## daytona version
 
-バージョン番号を出力する
+バージョン番号を表示します
 
 ```shell
 daytona version [flags]
@@ -1528,11 +1528,11 @@ daytona version [flags]
 __フラグ__
 | Long | Short | Description |
 | :--- | :---- | :---------- |
-| `--help` |  | help for daytona |
+| `--help` |  | daytonaのヘルプ |
 
 ## daytona whoami
 
-アクティブなユーザーに関する情報を表示します
+アクティブユーザーに関する情報を表示します
 
 ```shell
 daytona whoami [flags]

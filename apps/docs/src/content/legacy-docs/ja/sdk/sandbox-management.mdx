@@ -26,16 +26,16 @@ from daytona_sdk import Daytona
 
 daytona = Daytona()
 
-# Create a basic Sandbox
+# 基本的なSandboxを作成
 
 workspace = daytona.create()
 
-# Create a Sandbox with specific language
+# 特定の言語でSandboxを作成
 
 params = CreateWorkspaceParams(language="python")
 workspace = daytona.create(params)
 
-# Create a Sandbox with custom ID
+# カスタムIDでSandboxを作成
 
 params = CreateWorkspaceParams(id="my-workspace")
 workspace = daytona.create(params)
@@ -48,13 +48,13 @@ import { Daytona } from '@daytonaio/sdk';
 
 const daytona = new Daytona();
 
-// Create a basic workspace
+// 基本的なワークスペースを作成
 const workspace = await daytona.create();
 
-// Create a workspace with specific language
+// 特定の言語でワークスペースを作成
 const workspace = await daytona.create({ language: 'typescript' });
 
-// Create a workspace with custom ID
+// カスタムIDでワークスペースを作成
 const workspace = await daytona.create({ id: 'my-workspace' });
 ```
 
@@ -68,10 +68,10 @@ Daytona SDKは、PythonとTypeScriptを使用してSandboxのID、ルートデ�
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
-# Get Sandbox ID
+# SandboxのIDを取得
 workspace_id = workspace.id
 
-# Get Sandbox root directory
+# Sandboxのルートディレクトリを取得
 
 root_dir = workspace.get_workspace_root_dir()
 
@@ -79,10 +79,10 @@ root_dir = workspace.get_workspace_root_dir()
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-// Get workspace ID
+// ワークスペースIDを取得
 const workspaceId = workspace.id;
 
-// Get workspace root directory
+// ワークスペースのルートディレクトリを取得
 const rootDir = await workspace.getWorkspaceRootDir();
 ```
 
@@ -96,13 +96,13 @@ Daytona SDKは、PythonとTypeScriptを使用してSandboxを削除するなど�
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
-# Remove Sandbox
+# Sandboxを削除
 daytona.remove(workspace)
 ```
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-// Remove workspace
+// ワークスペースを削除
 await daytona.remove(workspace);
 ```
 </TabItem>

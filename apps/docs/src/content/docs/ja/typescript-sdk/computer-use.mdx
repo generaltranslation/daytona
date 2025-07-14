@@ -240,16 +240,16 @@ getInfo(): Promise<DisplayInfoResponse>
 
 **戻り値**:
 
-- `Promise<DisplayInfoResponse>` - プライマリディスプレイとすべての利用可能なディスプレイを含むディスプレイ情報
+- `Promise<DisplayInfoResponse>` - プライマリディスプレイと利用可能なすべてのディスプレイを含むディスプレイ情報
 
 **例:**
 
 ```typescript
 const info = await sandbox.computerUse.display.getInfo();
-console.log(`Primary display: ${info.primary_display.width}x${info.primary_display.height}`);
-console.log(`Total displays: ${info.total_displays}`);
+console.log(`プライマリディスプレイ: ${info.primary_display.width}x${info.primary_display.height}`);
+console.log(`総ディスプレイ数: ${info.total_displays}`);
 info.displays.forEach((display, index) => {
-  console.log(`Display ${index}: ${display.width}x${display.height} at ${display.x},${display.y}`);
+  console.log(`ディスプレイ ${index}: ${display.width}x${display.height} at ${display.x},${display.y}`);
 });
 ```
 
@@ -271,7 +271,7 @@ getWindows(): Promise<WindowsResponse>
 
 ```typescript
 const windows = await sandbox.computerUse.display.getWindows();
-console.log(`Found ${windows.count} open windows:`);
+console.log(`${windows.count}個の開いているウィンドウが見つかりました:`);
 windows.windows.forEach(window => {
   console.log(`- ${window.title} (ID: ${window.id})`);
 });
@@ -328,28 +328,28 @@ hotkey(keys: string): Promise<void>
 **Example:**
 
 ```typescript
-// Copy
+// コピー
 try {
   await sandbox.computerUse.keyboard.hotkey('ctrl+c');
-  console.log('Operation success');
+  console.log('操作成功');
 } catch (e) {
-  console.log('Operation failed:', e);
+  console.log('操作失敗:', e);
 }
 
-// Paste
+// ペースト
 try {
   await sandbox.computerUse.keyboard.hotkey('ctrl+v');
-  console.log('Operation success');
+  console.log('操作成功');
 } catch (e) {
-  console.log('Operation failed:', e);
+  console.log('操作失敗:', e);
 }
 
 // Alt+Tab
 try {
   await sandbox.computerUse.keyboard.hotkey('alt+tab');
-  console.log('Operation success');
+  console.log('操作成功');
 } catch (e) {
-  console.log('Operation failed:', e);
+  console.log('操作失敗:', e);
 }
 ```
 
@@ -380,28 +380,28 @@ press(key: string, modifiers?: string[]): Promise<void>
 **Example:**
 
 ```typescript
-// Press Enter
+// Enterを押す
 try {
   await sandbox.computerUse.keyboard.press('Return');
-  console.log('Operation success');
+  console.log('操作成功');
 } catch (e) {
-  console.log('Operation failed:', e);
+  console.log('操作失敗:', e);
 }
 
-// Press Ctrl+C
+// Ctrl+Cを押す
 try {
   await sandbox.computerUse.keyboard.press('c', ['ctrl']);
-  console.log('Operation success');
+  console.log('操作成功');
 } catch (e) {
-  console.log('Operation failed:', e);
+  console.log('操作失敗:', e);
 }
 
-// Press Ctrl+Shift+T
+// Ctrl+Shift+Tを押す
 try {
   await sandbox.computerUse.keyboard.press('t', ['ctrl', 'shift']);
-  console.log('Operation success');
+  console.log('操作成功');
 } catch (e) {
-  console.log('Operation failed:', e);
+  console.log('操作失敗:', e);
 }
 ```
 
@@ -434,17 +434,17 @@ type(text: string, delay?: number): Promise<void>
 ```typescript
 try {
   await sandbox.computerUse.keyboard.type('Hello, World!');
-  console.log('Operation success');
+  console.log('操作成功');
 } catch (e) {
-  console.log('Operation failed:', e);
+  console.log('操作失敗:', e);
 }
 
-// With delay between characters
+// 文字間に遅延を設定
 try {
   await sandbox.computerUse.keyboard.type('Slow typing', 100);
-  console.log('Operation success');
+  console.log('操作成功');
 } catch (e) {
-  console.log('Operation failed:', e);
+  console.log('操作失敗:', e);
 }
 ```
 
@@ -502,13 +502,13 @@ double?: boolean): Promise<MouseClickResponse>
 **Example:**
 
 ```typescript
-// Single left click
+// シングル左クリック
 const result = await sandbox.computerUse.mouse.click(100, 200);
 
-// Double click
+// ダブルクリック
 const doubleClick = await sandbox.computerUse.mouse.click(100, 200, 'left', true);
 
-// Right click
+// 右クリック
 const rightClick = await sandbox.computerUse.mouse.click(100, 200, 'right');
 ```
 
@@ -544,7 +544,7 @@ button?: string): Promise<MouseDragResponse>
 
 ```typescript
 const result = await sandbox.computerUse.mouse.drag(50, 50, 150, 150);
-console.log(`Dragged from ${result.from.x},${result.from.y} to ${result.to.x},${result.to.y}`);
+console.log(`${result.from.x},${result.from.y}から${result.to.x},${result.to.y}にドラッグしました`);
 ```
 
 ***
@@ -555,7 +555,7 @@ console.log(`Dragged from ${result.from.x},${result.from.y} to ${result.to.x},${
 getPosition(): Promise<MousePosition>
 ```
 
-現在のマウスカーソルの位置を取得します
+現在のマウスカーソル位置を取得します
 
 **Returns**:
 
@@ -565,7 +565,7 @@ getPosition(): Promise<MousePosition>
 
 ```typescript
 const position = await sandbox.computerUse.mouse.getPosition();
-console.log(`Mouse is at: ${position.x}, ${position.y}`);
+console.log(`マウスの位置: ${position.x}, ${position.y}`);
 ```
 
 ***
@@ -592,7 +592,7 @@ move(x: number, y: number): Promise<MouseMoveResponse>
 
 ```typescript
 const result = await sandbox.computerUse.mouse.move(100, 200);
-console.log(`Mouse moved to: ${result.x}, ${result.y}`);
+console.log(`マウスが移動しました: ${result.x}, ${result.y}`);
 ```
 
 ***
@@ -624,10 +624,10 @@ amount?: number): Promise<boolean>
 **Example:**
 
 ```typescript
-// Scroll up
+// 上にスクロール
 const scrollUp = await sandbox.computerUse.mouse.scroll(100, 200, 'up', 3);
 
-// Scroll down
+// 下にスクロール
 const scrollDown = await sandbox.computerUse.mouse.scroll(100, 200, 'down', 5);
 ```
 
@@ -678,17 +678,17 @@ takeCompressed(options?: ScreenshotOptions): Promise<CompressedScreenshotRespons
 **Example:**
 
 ```typescript
-// Default compression
+// デフォルトの圧縮
 const screenshot = await sandbox.computerUse.screenshot.takeCompressed();
 
-// High quality JPEG
+// 高品質JPEG
 const jpeg = await sandbox.computerUse.screenshot.takeCompressed({
   format: 'jpeg',
   quality: 95,
   showCursor: true
 });
 
-// Scaled down PNG
+// 縮小されたPNG
 const scaled = await sandbox.computerUse.screenshot.takeCompressed({
   format: 'png',
   scale: 0.5
@@ -724,7 +724,7 @@ const screenshot = await sandbox.computerUse.screenshot.takeCompressedRegion(reg
   quality: 80,
   showCursor: true
 });
-console.log(`Compressed size: ${screenshot.size_bytes} bytes`);
+console.log(`圧縮サイズ: ${screenshot.size_bytes} バイト`);
 ```
 
 ***
@@ -750,9 +750,9 @@ takeFullScreen(showCursor?: boolean): Promise<ScreenshotResponse>
 
 ```typescript
 const screenshot = await sandbox.computerUse.screenshot.takeFullScreen();
-console.log(`Screenshot size: ${screenshot.width}x${screenshot.height}`);
+console.log(`スクリーンショットサイズ: ${screenshot.width}x${screenshot.height}`);
 
-// With cursor visible
+// カーソルを表示
 const withCursor = await sandbox.computerUse.screenshot.takeFullScreen(true);
 ```
 
@@ -781,7 +781,7 @@ takeRegion(region: ScreenshotRegion, showCursor?: boolean): Promise<RegionScreen
 ```typescript
 const region = { x: 100, y: 100, width: 300, height: 200 };
 const screenshot = await sandbox.computerUse.screenshot.takeRegion(region);
-console.log(`Captured region: ${screenshot.region.width}x${screenshot.region.height}`);
+console.log(`キャプチャした領域: ${screenshot.region.width}x${screenshot.region.height}`);
 ```
 
 ***

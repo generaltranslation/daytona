@@ -87,7 +87,7 @@ delete(snapshot: Snapshot): Promise<void>
 const daytona = new Daytona();
 const snapshot = await daytona.snapshot.get("snapshot-name");
 await daytona.snapshot.delete(snapshot);
-console.log("Snapshot deleted successfully");
+console.log("スナップショットが正常に削除されました");
 ```
 
 ***
@@ -118,7 +118,7 @@ get(name: string): Promise<Snapshot>
 ```ts
 const daytona = new Daytona();
 const snapshot = await daytona.snapshot.get("snapshot-name");
-console.log(`Snapshot ${snapshot.name} is in state ${snapshot.state}`);
+console.log(`スナップショット ${snapshot.name} の状態は ${snapshot.state} です`);
 ```
 
 ***
@@ -140,7 +140,7 @@ list(): Promise<Snapshot[]>
 ```ts
 const daytona = new Daytona();
 const snapshots = await daytona.snapshot.list();
-console.log(`Found ${snapshots.length} snapshots`);
+console.log(`${snapshots.length} 個のスナップショットが見つかりました`);
 snapshots.forEach(snapshot => console.log(`${snapshot.name} (${snapshot.imageName})`));
 ```
 

@@ -183,7 +183,7 @@ async def commit(path: str, message: str, author: str,
 **例**:
 
 ```python
-# Stage and commit changes
+# 変更をステージしてコミット
 await sandbox.git.add("workspace/repo", ["README.md"])
 await sandbox.git.commit(
     path="workspace/repo",
@@ -214,10 +214,10 @@ async def push(path: str,
 **例**:
 
 ```python
-# Push without authentication (for public repos or SSH)
+# 認証なしでプッシュ（パブリックリポジトリまたはSSH用）
 await sandbox.git.push("workspace/repo")
 
-# Push with authentication
+# 認証ありでプッシュ
 await sandbox.git.push(
     path="workspace/repo",
     username="user",
@@ -246,10 +246,10 @@ async def pull(path: str,
 **例**:
 
 ```python
-# Pull without authentication
+# 認証なしでプル
 await sandbox.git.pull("workspace/repo")
 
-# Pull with authentication
+# 認証ありでプル
 await sandbox.git.pull(
     path="workspace/repo",
     username="user",
@@ -273,7 +273,7 @@ async def status(path: str) -> GitStatus
 
 **戻り値**:
 
-- `GitStatus` - 以下を含むリポジトリステータス情報:
+- `GitStatus` - 以下を含むリポジトリステータス情報：
   - current_branch: 現在のブランチ名
   - file_status: ファイルステータスのリスト
   - ahead: リモートにプッシュされていないローカルコミット数
@@ -308,7 +308,7 @@ async def checkout_branch(path: str, branch: str) -> None
 **例**:
 
 ```python
-# Checkout a branch
+# ブランチをチェックアウト
 await sandbox.git.checkout_branch("workspace/repo", "feature-branch")
 ```
 
@@ -330,7 +330,7 @@ async def create_branch(path: str, name: str) -> None
 **例**:
 
 ```python
-# Create a new branch
+# 新しいブランチを作成
 await sandbox.git.create_branch("workspace/repo", "new-feature")
 ```
 
@@ -352,7 +352,7 @@ async def delete_branch(path: str, name: str) -> None
 **例**:
 
 ```python
-# Delete a branch
+# ブランチを削除
 await sandbox.git.delete_branch("workspace/repo", "old-feature")
 ```
 
