@@ -23,10 +23,10 @@ Daytona SDKは、PythonとTypeScriptを使用してSandbox内のファイルと�
 files = sandbox.fs.list_files("workspace")
 
 for file in files:
-print(f"Name: {file.name}")
-print(f"Is directory: {file.is_dir}")
-print(f"Size: {file.size}")
-print(f"Modified: {file.mod_time}")
+    print(f"Name: {file.name}")
+    print(f"Is directory: {file.is_dir}")
+    print(f"Size: {file.size}")
+    print(f"Modified: {file.mod_time}")
 
 ```
 </TabItem>
@@ -104,22 +104,22 @@ await sandbox.fs.uploadFile(fileContent, "data.txt")
 files_to_upload = []
 
 with open("file1.txt", "rb") as f1:
-files_to_upload.append(FileUpload(
-source=f1.read(),
-destination="data/file1.txt",
-))
+    files_to_upload.append(FileUpload(
+        source=f1.read(),
+        destination="data/file1.txt",
+    ))
 
 with open("file2.txt", "rb") as f2:
-files_to_upload.append(FileUpload(
-source=f2.read(),
-destination="data/file2.txt",
-))
+    files_to_upload.append(FileUpload(
+        source=f2.read(),
+        destination="data/file2.txt",
+    ))
 
 with open("settings.json", "rb") as f3:
-files_to_upload.append(FileUpload(
-source=f3.read(),
-destination="config/settings.json",
-))
+    files_to_upload.append(FileUpload(
+        source=f3.read(),
+        destination="config/settings.json",
+    ))
 
 sandbox.fs.upload_files(files_to_upload)
 
@@ -160,7 +160,7 @@ await sandbox.fs.uploadFiles(files)
 content = sandbox.fs.download_file("file1.txt")
 
 with open("local_file.txt", "wb") as f:
-f.write(content)
+    f.write(content)
 
 print(content.decode('utf-8'))
 
@@ -240,7 +240,7 @@ Daytona SDKは、PythonとTypeScriptを使用してファイル内のテキス�
 <Tabs>
 <TabItem label="Python" icon="seti:python">
 ```python
-# ファイル内のテキストを検索；フォルダが指定された場合、検索は再帰的に行われます
+# ファイル内のテキストを検索; フォルダが指定された場合、検索は再帰的に行われます
 results = sandbox.fs.find_files(
     path="workspace/src",
     pattern="text-of-interest"
@@ -254,16 +254,16 @@ for match in results:
 # ファイル内のテキストを置換
 
 sandbox.fs.replace_in_files(
-files=["workspace/file1.txt", "workspace/file2.txt"],
-pattern="old_text",
-new_value="new_text"
+    files=["workspace/file1.txt", "workspace/file2.txt"],
+    pattern="old_text",
+    new_value="new_text"
 )
 
 ```
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```typescript
-// ファイル内のテキストを検索；フォルダが指定された場合、検索は再帰的に行われます
+// ファイル内のテキストを検索; フォルダが指定された場合、検索は再帰的に行われます
 const results = await sandbox.fs.findFiles({
     path="workspace/src",
     pattern: "text-of-interest"

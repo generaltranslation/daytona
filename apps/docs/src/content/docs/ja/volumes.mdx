@@ -14,21 +14,21 @@ import Label from '@components/Label.astro'
 Sandboxにボリュームをマウントするには、まずボリュームを作成する必要があります。
 
 <Tabs>
-  <TabItem label="Python" icon="seti:python">
-    ```bash
-    volume = daytona.volume.get("my-volume", create=True)
-    ```
-  </TabItem>
-  <TabItem label="TypeScript" icon="seti:typescript">
-    ```bash
-    const volume = await daytona.volume.get('my-volume', true)
-    ```
-  </TabItem>
+<TabItem label="Python" icon="seti:python">
+```bash
+volume = daytona.volume.get("my-volume", create=True)
+```
+</TabItem>
+<TabItem label="TypeScript" icon="seti:typescript">
+```bash
+const volume = await daytona.volume.get('my-volume', true)
+```
+</TabItem>
 </Tabs>
 
-## Sandboxへのボリュームのマウント
+## SandboxへのVolumeのマウント
 
-ボリュームが作成されると、`CreateSandboxFromSnapshotParams`オブジェクトで指定することによってSandboxにマウントできます：
+Volumeが作成されると、`CreateSandboxFromSnapshotParams`オブジェクトで指定することによってSandboxにマウントできます：
 
 <Tabs>
 <TabItem label="Python" icon="seti:python">
@@ -38,23 +38,23 @@ from daytona import CreateSandboxFromSnapshotParams, Daytona, VolumeMount
 
 daytona = Daytona()
 
-# 新しいボリュームを作成するか、既存のものを取得する
+# 新しいvolumeを作成するか、既存のものを取得する
 
 volume = daytona.volume.get("my-volume", create=True)
 
-# ボリュームをsandboxにマウントする
+# volumeをsandboxにマウントする
 
 mount_dir_1 = "/home/daytona/volume"
 
 params = CreateSandboxFromSnapshotParams(
-language="python",
-volumes=[VolumeMount(volumeId=volume.id, mountPath=mount_dir_1)],
+    language="python",
+    volumes=[VolumeMount(volumeId=volume.id, mountPath=mount_dir_1)],
 )
 sandbox = daytona.create(params)
 
 # sandboxでの作業が完了したら、削除できます
 
-# ボリュームはsandboxが削除された後も持続します
+# volumeはsandboxが削除された後も永続化されます
 
 sandbox.delete()
 
@@ -69,10 +69,10 @@ import path from 'path'
 async function main() {
   const daytona = new Daytona()
 
-  //  新しいボリュームを作成するか、既存のものを取得する
+  // 新しいvolumeを作成するか、既存のものを取得する
   const volume = await daytona.volume.get('my-volume', true)
 
-  // ボリュームをsandboxにマウントする
+  // volumeをsandboxにマウントする
   const mountDir1 = '/home/daytona/volume'
 
   const sandbox1 = await daytona.create({
@@ -81,7 +81,7 @@ async function main() {
   })
 
   // sandboxでの作業が完了したら、削除できます
-  // ボリュームはsandboxが削除された後も持続します
+  // volumeはsandboxが削除された後も永続化されます
   await daytona.delete(sandbox1)
 }
 
@@ -97,18 +97,18 @@ main()
 ボリュームが不要になった場合、削除することができます。
 
 <Tabs>
-  <TabItem label="Python" icon="seti:python">
-    ```python
-    volume = daytona.volume.get("my-volume", create=True)
-    daytona.volume.delete(volume)
-    ```
-  </TabItem>
-  <TabItem label="TypeScript" icon="seti:typescript">
-    ```typescript
-    const volume = await daytona.volume.get('my-volume', true)
-    await daytona.volume.delete(volume)
-    ```
-  </TabItem>
+<TabItem label="Python" icon="seti:python">
+```python
+volume = daytona.volume.get("my-volume", create=True)
+daytona.volume.delete(volume)
+```
+</TabItem>
+<TabItem label="TypeScript" icon="seti:typescript">
+```typescript
+const volume = await daytona.volume.get('my-volume', true)
+await daytona.volume.delete(volume)
+```
+</TabItem>
 </Tabs>
 
 ## ボリュームの操作

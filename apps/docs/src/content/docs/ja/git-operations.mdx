@@ -28,18 +28,18 @@ sandbox.git.clone(
 # 認証付きクローン
 
 sandbox.git.clone(
-url="<https://github.com/user/repo.git>",
-path="workspace/repo",
-username="git",
-password="personal_access_token"
+    url="https://github.com/user/repo.git",
+    path="workspace/repo",
+    username="git",
+    password="personal_access_token"
 )
 
 # 特定のブランチをクローン
 
 sandbox.git.clone(
-url="<https://github.com/user/repo.git>",
-path="workspace/repo",
-branch="develop"
+    url="https://github.com/user/repo.git",
+    path="workspace/repo",
+    branch="develop"
 )
 
 ```
@@ -92,7 +92,7 @@ for file in status.file_status:
 
 response = sandbox.git.branches("workspace/repo")
 for branch in response.branches:
-print(f"Branch: {branch}")
+    print(f"Branch: {branch}")
 
 ```
 </TabItem>
@@ -103,7 +103,7 @@ const status = await sandbox.git.status("workspace/repo");
 console.log(`Current branch: ${status.currentBranch}`);
 console.log(`Commits ahead: ${status.ahead}`);
 console.log(`Commits behind: ${status.behind}`);
-status['FileStatus[]'].forEach(file => {
+status.fileStatus.forEach(file => {
     console.log(`File: ${file.name}`);
 });
 
@@ -133,7 +133,7 @@ sandbox.git.create_branch("workspace/repo", "feature/new-feature")
 
 # ブランチを切り替え
 
-sandbox.git.checkout("workspace/repo", "feature/new-feature")
+sandbox.git.checkout_branch("workspace/repo", "feature/new-feature")
 
 # ブランチを削除
 
@@ -147,7 +147,7 @@ sandbox.git.delete_branch("workspace/repo", "feature/old-feature")
 await sandbox.git.createBranch("workspace/repo", "feature/new-feature");
 
 // ブランチを切り替え
-await sandbox.git.checkout("workspace/repo", "feature/new-feature");
+await sandbox.git.checkoutBranch("workspace/repo", "feature/new-feature");
 
 // ブランチを削除
 await sandbox.git.deleteBranch("workspace/repo", "feature/old-feature");
@@ -174,15 +174,7 @@ sandbox.git.add("workspace/repo", ["."])
 
 # 変更をコミット
 
-sandbox.git.commit("workspace/repo", "feat: add new feature")
-
-# コミット履歴を取得
-
-commits = sandbox.git.log("workspace/repo")
-for commit in commits:
-print(f"Commit: {commit.hash}")
-print(f"Author: {commit.author}")
-print(f"Message: {commit.message}")
+sandbox.git.commit("workspace/repo", "feat: add new feature", "John Doe", "john@example.com")
 
 ```
 </TabItem>
@@ -195,15 +187,7 @@ await sandbox.git.add("workspace/repo", ["file1.txt", "file2.txt"]);
 await sandbox.git.add("workspace/repo", ["."]);
 
 // 変更をコミット
-await sandbox.git.commit("workspace/repo", "feat: add new feature");
-
-// コミット履歴を取得
-const commits = await sandbox.git.log("workspace/repo");
-commits.forEach(commit => {
-    console.log(`Commit: ${commit.hash}`);
-    console.log(`Author: ${commit.author}`);
-    console.log(`Message: ${commit.message}`);
-});
+await sandbox.git.commit("workspace/repo", "feat: add new feature", "John Doe", "john@example.com");
 ```
 
 </TabItem>
@@ -211,11 +195,11 @@ commits.forEach(commit => {
 
 ## リモート操作
 
-Daytona SDKは、Gitでリモートリポジトリを操作するオプションを提供します。変更をプッシュ、プル、およびリモートの一覧表示ができます。
+Daytona SDKは、Gitでリモートリポジトリとやりとりするオプションを提供します。変更をプッシュしたり、変更をプルしたり、リモートを一覧表示したりできます。
 
-### リモートでの作業
+### リモートとの作業
 
-Daytona SDKは、PythonとTypeScriptを使用してGitリポジトリでプッシュ、プル、およびリモートの一覧表示を行うオプションを提供します。
+Daytona SDKは、PythonとTypeScriptを使用してGitリポジトリでプッシュ、プル、リモートの一覧表示を行うオプションを提供します。
 
 <Tabs>
 <TabItem label="Python" icon="seti:python">
@@ -227,12 +211,6 @@ sandbox.git.push("workspace/repo")
 
 sandbox.git.pull("workspace/repo")
 
-# リモートを一覧表示
-
-remotes = sandbox.git.list_remotes("workspace/repo")
-for remote in remotes:
-print(f"Remote: {remote.name} URL: {remote.url}")
-
 ```
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
@@ -240,14 +218,8 @@ print(f"Remote: {remote.name} URL: {remote.url}")
 // 変更をプッシュ
 await sandbox.git.push("workspace/repo");
 
-// 特定のリモートとブランチにプッシュ
-await sandbox.git.push("workspace/repo", "origin", "feature/new-feature");
-
 // 変更をプル
 await sandbox.git.pull("workspace/repo");
-
-// 特定のリモートとブランチからプル
-await sandbox.git.pull("workspace/repo", "origin", "main");
 ```
 
 </TabItem>

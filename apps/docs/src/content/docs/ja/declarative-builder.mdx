@@ -64,11 +64,11 @@ dynamic_image = (
 # 動的イメージで新しいSandboxを作成し、ビルドログをストリーミング
 
 sandbox = daytona.create(
-CreateSandboxFromImageParams(
-image=dynamic_image,
-),
-timeout=0,
-on_snapshot_create_logs=print,
+    CreateSandboxFromImageParams(
+        image=dynamic_image,
+    ),
+    timeout=0,
+    on_snapshot_create_logs=print,
 )
 
 ```
@@ -103,7 +103,7 @@ const sandbox = await daytona.create(
 :::tip
 動的イメージからSandbox作成を一度実行すると、イメージは次の24時間キャッシュされ、同じRunnerに到達する後続のSandbox作成はほぼ瞬時に行われます。
 
-これは、毎回同じスクリプトを使用でき、Daytonaがイメージを適切にキャッシュしてくれることを意味します。
+これは、毎回同じスクリプトを使用でき、Daytonaが適切にイメージをキャッシュしてくれることを意味します。
 :::
 
 ## 事前構築済みSnapshotの作成
@@ -121,46 +121,46 @@ snapshot_name = f"python-example:{int(time.time())}"
 # イメージに追加するデータを含むローカルファイルを作成
 
 with open("file_example.txt", "w") as f:
-f.write("Hello, World!")
+    f.write("Hello, World!")
 
 # 一般的なデータサイエンスパッケージを含むPythonイメージを作成
 
 image = (
-Image.debian_slim("3.12")
-.pip_install(["numpy", "pandas", "matplotlib", "scipy", "scikit-learn", "jupyter"])
-.run_commands(
-"apt-get update && apt-get install -y git",
-"groupadd -r daytona && useradd -r -g daytona -m daytona",
-"mkdir -p /home/daytona/workspace",
-)
-.dockerfile_commands(["USER daytona"])
-.workdir("/home/daytona/workspace")
-.env({"MY_ENV_VAR": "My Environment Variable"})
-.add_local_file("file_example.txt", "/home/daytona/workspace/file_example.txt")
+    Image.debian_slim("3.12")
+    .pip_install(["numpy", "pandas", "matplotlib", "scipy", "scikit-learn", "jupyter"])
+    .run_commands(
+        "apt-get update && apt-get install -y git",
+        "groupadd -r daytona && useradd -r -g daytona -m daytona",
+        "mkdir -p /home/daytona/workspace",
+    )
+    .dockerfile_commands(["USER daytona"])
+    .workdir("/home/daytona/workspace")
+    .env({"MY_ENV_VAR": "My Environment Variable"})
+    .add_local_file("file_example.txt", "/home/daytona/workspace/file_example.txt")
 )
 
 # Snapshotを作成し、ビルドログをストリーミング
 
 print(f"=== Creating Snapshot: {snapshot_name} ===")
 daytona.snapshot.create(
-CreateSnapshotParams(
-name=snapshot_name,
-image=image,
-resources=Resources(
-cpu=1,
-memory=1,
-disk=3,
-),
-),
-on_logs=print,
+    CreateSnapshotParams(
+        name=snapshot_name,
+        image=image,
+        resources=Resources(
+            cpu=1,
+            memory=1,
+            disk=3,
+        ),
+    ),
+    on_logs=print,
 )
 
 # 事前構築済みSnapshotを使用して新しいSandboxを作成
 
 sandbox = daytona.create(
-CreateSandboxFromSnapshotParams(
-snapshot=snapshot_name
-)
+    CreateSandboxFromSnapshotParams(
+        snapshot=snapshot_name
+    )
 )
 
 ```

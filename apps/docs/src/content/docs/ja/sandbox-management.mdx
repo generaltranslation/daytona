@@ -28,7 +28,7 @@ Daytona SDKは、デフォルトまたはカスタム設定でSandboxを作成�
 
 ### 基本的なSandboxの作成
 
-Daytona SDKは、デフォルト設定、特定の言語、またはカスタムラベルを使用してSandboxを作成するメソッドをPythonとTypeScriptで提供します。
+Daytona SDKは、PythonとTypeScriptを使用して、デフォルト設定、特定の言語、またはカスタムラベルでSandboxを作成するメソッドを提供します。
 
 <Tabs>
 <TabItem label="Python" icon="seti:python">
@@ -73,7 +73,7 @@ const sandbox = await daytona.create({ labels: { SOME_LABEL: 'my-label' } });
 </TabItem>
 </Tabs>
 
-Sandboxがアクティブに使用されていない場合は、停止することが推奨されます。これは[stopコマンドを使用](/docs/ja/sandbox-management#stop-and-start-sandbox)して手動で行うか、[自動停止間隔を設定](/docs/ja/sandbox-management#auto-stop-and-auto-archive)して自動的に行うことができます。
+Sandboxが積極的に使用されていない場合は、停止することが推奨されます。これは[stopコマンドを使用](/docs/ja/sandbox-management#stop-and-start-sandbox)して手動で行うか、[自動停止間隔を設定](/docs/ja/sandbox-management#auto-stop-and-auto-archive)して自動的に行うことができます。
 
 :::note
 DaytonaはデフォルトのSnapshotを使用してウォームSandboxのプールを保持しています。  
@@ -98,14 +98,14 @@ daytona = Daytona()
 # カスタムリソースでSandboxを作成
 
 resources = Resources(
-cpu=2, # 2 CPUコア
-memory=4, # 4GB RAM
-disk=8, # 8GBディスク容量
+    cpu=2,  # 2 CPUコア
+    memory=4,  # 4GB RAM
+    disk=8,  # 8GBディスク容量
 )
 
 params = CreateSandboxFromImageParams(
-image=Image.debian_slim("3.12"),
-resources=resources
+    image=Image.debian_slim("3.12"),
+    resources=resources
 )
 
 sandbox = daytona.create(params)
@@ -231,7 +231,7 @@ await sandbox.start();
 
 停止状態は、Sandboxが近いうちに再度開始されることが予想される場合に使用すべきです。そうでなければ、ディスク使用量のコストを削減するために、Sandboxを停止してからアーカイブすることが推奨されます。
 
-## Sandboxをアーカイブする
+## Sandboxのアーカイブ
 
 Daytona SDKは、PythonとTypeScriptを使用してSandboxをアーカイブするメソッドを提供します。
 
@@ -241,12 +241,18 @@ Sandboxがアーカイブされると、ファイルシステム全体の状態�
 Sandboxはアーカイブする前に停止する必要があり、停止されたSandboxと同じ方法で再度開始することができます。
 
 <Tabs>
-  <TabItem label="Python" icon="seti:python">
-    ```python # Sandboxをアーカイブする sandbox.archive() ```
-  </TabItem>
-  <TabItem label="TypeScript" icon="seti:typescript">
-    ```typescript // Sandboxをアーカイブする await sandbox.archive(); ```
-  </TabItem>
+<TabItem label="Python" icon="seti:python">
+```python
+# Sandboxをアーカイブ
+sandbox.archive()
+```
+</TabItem>
+<TabItem label="TypeScript" icon="seti:typescript">
+```typescript
+// Sandboxをアーカイブ
+await sandbox.archive();
+```
+</TabItem>
 </Tabs>
 
 ## Sandboxを削除する

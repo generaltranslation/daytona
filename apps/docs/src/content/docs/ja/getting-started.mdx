@@ -22,18 +22,18 @@ pip install daytona
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
 ```bash
-# npmを使用
+# Using npm
 npm install @daytonaio/sdk
 
-# yarnを使用
+# Using yarn
 
 yarn add @daytonaio/sdk
 
-# pnpmを使用
+# Using pnpm
 
 pnpm add @daytonaio/sdk
 
-```
+````
 </TabItem>
 </Tabs>
 
@@ -61,7 +61,7 @@ else:
 
 # Sandboxをクリーンアップ
 sandbox.delete()
-```
+````
 
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
@@ -101,7 +101,7 @@ await sandbox.delete();
 
 main().catch(console.error)
 
-```
+````
 </TabItem>
 </Tabs>
 
@@ -109,7 +109,7 @@ main().catch(console.error)
 <TabItem label="Python" icon="seti:python">
 ```bash
 python main.py
-```
+````
 
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
@@ -140,9 +140,7 @@ app = Flask(**name**)
 @app.route('/')
 def hello():
 return """
-
 <!DOCTYPE html>
-
 <html>
 <head>
 <title>Hello World</title>
@@ -171,7 +169,7 @@ exec_session_id = "python-app-session"
 sandbox.process.create_session(exec_session_id)
 
 sandbox.process.execute_session_command(exec_session_id, SessionExecuteRequest(
-command="python app.py",
+command="python /app.py",
 var_async=True
 ))
 
@@ -180,7 +178,7 @@ var_async=True
 preview_info = sandbox.get_preview_link(3000)
 print(f"Flask app is available at: {preview_info.url}")
 
-```
+````
 
 </TabItem>
 <TabItem label="TypeScript" icon="seti:typescript">
@@ -240,7 +238,7 @@ if __name__ == '__main__':
 
 main().catch(error => console.error("Error:", error));
 
-```
+````
 
 </TabItem>
 </Tabs>
@@ -303,7 +301,7 @@ code = code.replace('\\', '\\\\')
 response = sandbox.process.code_run(code)
 print("The factorial of 25 is", response.result)
 
-```
+````
 
 スニペットの実行：
 
@@ -312,7 +310,7 @@ ANTHROPIC_API_KEY="your-anthropic-api-key"
 DAYTONA_API_KEY="your-daytona-api-key"
 DAYTONA_TARGET=us
 python claude-example.py
-```
+````
 
 ```bash
 > The factorial of 25 is 15511210043330985984000000
@@ -378,7 +376,7 @@ console.log("The factorial of 25 is", response.result)
 
 main().catch(console.error)
 
-```
+````
 
 
 スニペットの実行：
@@ -388,7 +386,7 @@ ANTHROPIC_API_KEY="your-anthropic-api-key"
 DAYTONA_API_KEY="your-daytona-api-key"
 DAYTONA_TARGET=us
 npx ts-node claude-example.ts
-```
+````
 
 ```bash
 > The factorial of 25 is 15511210043330985984000000

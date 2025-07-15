@@ -17,7 +17,7 @@ Daytona SDKは以下の両方をサポートしています：
 サンドボックス化されたプロセスがより大きなシステムの一部であり、長期間（または無期限に）実行されることが期待される場合、
 システムの残りの部分が実行を続けている間に、**バックグラウンドで**ログを非同期に処理することができます。
 
-これは以下の場合に理想的です：
+これは以下の用途に最適です：
 
 - 継続的な監視
 - 長時間実行されるジョブのデバッグ
@@ -32,8 +32,8 @@ import asyncio
 from daytona import Daytona, SessionExecuteRequest
 
 async def main():
-daytona = Daytona()
-sandbox = daytona.create()
+    daytona = Daytona()
+    sandbox = daytona.create()
 
     try:
         session_id = "exec-session-1"
@@ -65,8 +65,8 @@ sandbox = daytona.create()
         print("サンドボックスをクリーンアップしています...")
         sandbox.delete()
 
-if **name** == "**main**":
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())
 
 ```
 </TabItem>
@@ -78,7 +78,7 @@ asyncio.run(main())
     const daytona = new Daytona()
     const sandbox = await daytona.create()
 
-    try {
+    try {           
       const sessionId = 'exec-session-async-logs'
       await sandbox.process.createSession(sessionId)
 
@@ -106,15 +106,14 @@ asyncio.run(main())
   }
 
   main()
-```
+  ```
 
   </TabItem>
 </Tabs>
 
 ## 同期処理
 
-コマンドの実行時間が予測可能な場合、またはバックグラウンドで実行する必要がない場合は、
-ログストリームを同期的に処理できます。例えば、ログをファイルや他のストレージに書き込むことができます。
+コマンドの実行時間が予測可能な場合、またはバックグラウンドで実行する必要がない場合は、ログストリームを同期的に処理できます。例えば、ログをファイルや他のストレージに書き込むことができます。
 
 <Tabs syncKey="language">
   <TabItem label="Python" icon="seti:python">
@@ -123,9 +122,9 @@ asyncio.run(main())
   import os
   from daytona import Daytona, SessionExecuteRequest
 
-async def main():
-daytona = Daytona()
-sandbox = daytona.create()
+  async def main():
+      daytona = Daytona()
+      sandbox = daytona.create()
 
       try:
           session_id = "exec-session-1"
@@ -159,51 +158,51 @@ sandbox = daytona.create()
           print("Cleaning up sandbox...")
           sandbox.delete()
 
-if **name** == "**main**":
-asyncio.run(main())
+  if __name__ == "__main__":
+      asyncio.run(main())
 
-```
-</TabItem>
-<TabItem label="Typescript" icon="seti:typescript">
-```typescript
-import { Daytona, Sandbox } from '@daytonaio/sdk'
+  ```
+  </TabItem>
+  <TabItem label="Typescript" icon="seti:typescript">
+  ```typescript
+  import { Daytona, Sandbox } from '@daytonaio/sdk'
 
-async function main() {
-  const daytona = new Daytona()
-  const sandbox = await daytona.create()
+  async function main() {
+    const daytona = new Daytona()
+    const sandbox = await daytona.create()
 
-  try {
-    const sessionId = 'exec-session-async-logs'
-    await sandbox.process.createSession(sessionId)
+    try {           
+      const sessionId = 'exec-session-async-logs'
+      await sandbox.process.createSession(sessionId)
 
-    const command = await sandbox.process.executeSessionCommand(sessionId, {
-      command: 'counter=1; while (( counter <= 5 )); do echo "Count: $counter"; ((counter++)); sleep 2; done',
-      async: true,
-    })
+      const command = await sandbox.process.executeSessionCommand(sessionId, {
+        command: 'counter=1; while (( counter <= 5 )); do echo "Count: $counter"; ((counter++)); sleep 2; done',
+        async: true,
+      })
 
-    const logFilePath = `./logs/logs-session-${sessionId}-command-${command.cmdId}.log`
-    const logsDir = path.dirname(logFilePath)
-    if (!fs.existsSync(logsDir)) {
-      fs.mkdirSync(logsDir, { recursive: true })
+      const logFilePath = `./logs/logs-session-${sessionId}-command-${command.cmdId}.log`
+      const logsDir = path.dirname(logFilePath)
+      if (!fs.existsSync(logsDir)) {
+        fs.mkdirSync(logsDir, { recursive: true })
+      }
+
+      const stream = fs.createWriteStream(logFilePath)
+      await sandbox.process.getSessionCommandLogs(sessionId, command.cmdId!, (chunk) => {
+        const cleanChunk = chunk.replace(/\x00/g, '')
+        stream.write(cleanChunk)
+      })
+      stream.end()
+      await logTask
+    } catch (error) {
+      console.error('Error:', error)
+    } finally {
+      console.log('Cleaning up sandbox...')
+      await sandbox.delete()
     }
-
-    const stream = fs.createWriteStream(logFilePath)
-    await sandbox.process.getSessionCommandLogs(sessionId, command.cmdId!, (chunk) => {
-      const cleanChunk = chunk.replace(/\x00/g, '')
-      stream.write(cleanChunk)
-    })
-    stream.end()
-    await logTask
-  } catch (error) {
-    console.error('Error:', error)
-  } finally {
-    console.log('Cleaning up sandbox...')
-    await sandbox.delete()
   }
-}
 
-main()
-```
+  main()
+  ```
 
   </TabItem>
 </Tabs>
