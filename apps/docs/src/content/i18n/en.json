@@ -79,5 +79,6 @@
   "sidebarconfig.syncPython": "Sync Python",
   "sidebarconfig.asyncPython": "Async Python",
   "sidebarconfig.asyncDaytona": "AsyncDaytona",
-  "sidebarconfig.asyncSandbox": "AsyncSandbox"
+  "sidebarconfig.asyncSandbox": "AsyncSandbox",
+  "sidebarconfig.dataAnalysis": "Data Analysis with AI"
 }

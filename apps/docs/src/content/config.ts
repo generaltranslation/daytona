@@ -314,6 +314,15 @@ export const getSidebarConfig = (
             icon: 'server.svg',
           },
         },
+        {
+          type: 'link',
+          href: localizePath('/docs/data-analysis-with-ai', locale),
+          label: labels['sidebarconfig.dataAnalysis'],
+          disablePagination: true,
+          attrs: {
+            icon: 'chart.svg',
+          },
+        },
       ],
     },
     {

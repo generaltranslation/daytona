@@ -2,16 +2,17 @@
 title: ボリューム
 ---
 
-import { TabItem, Tabs } from '@astrojs/starlight/components'
 import Label from '@components/Label.astro'
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-ボリュームは、Sandboxファイルシステム上のFUSEベースのマウントで、Sandbox間でのファイル共有と、マウントされたボリューム上に既に存在するファイルへの即座のアクセスを可能にします。
-ボリュームを使用することで、Sandboxは大きなファイルから即座に読み取ることができ、最初にSandboxファイルシステムにアップロードする必要がなくなります。
-ボリュームデータはS3互換オブジェクトストアに保存されます。単一のSandboxに複数のボリュームをマウントでき、各ボリュームは複数のSandboxに同時にマウントできます。
+ボリュームは、Sandbox間で共有ファイルアクセスを提供するFUSEベースのマウントです。Sandboxが大きなファイルから瞬時に読み取ることを可能にし、各Sandboxに手動でファイルをアップロードする必要がありません。ボリュームデータはS3互換のオブジェクトストアに保存されます。
+
+- 複数のボリュームを単一のSandboxにマウントできます
+- 単一のボリュームを複数のSandboxにマウントできます
 
 ## ボリュームの作成
 
-Sandboxにボリュームをマウントするには、まずボリュームを作成する必要があります。
+Sandboxにボリュームをマウントする前に、ボリュームを作成する必要があります。
 
 <Tabs>
 <TabItem label="Python" icon="seti:python">
@@ -26,9 +27,9 @@ const volume = await daytona.volume.get('my-volume', true)
 </TabItem>
 </Tabs>
 
-## SandboxへのVolumeのマウント
+## ボリュームのマウント
 
-Volumeが作成されると、`CreateSandboxFromSnapshotParams`オブジェクトで指定することによってSandboxにマウントできます：
+ボリュームが作成されると、`CreateSandboxFromSnapshotParams`オブジェクトで指定することによってSandboxにマウントできます：
 
 <Tabs>
 <TabItem label="Python" icon="seti:python">
@@ -38,11 +39,11 @@ from daytona import CreateSandboxFromSnapshotParams, Daytona, VolumeMount
 
 daytona = Daytona()
 
-# 新しいvolumeを作成するか、既存のものを取得する
+# 新しいボリュームを作成するか、既存のものを取得する
 
 volume = daytona.volume.get("my-volume", create=True)
 
-# volumeをsandboxにマウントする
+# ボリュームをサンドボックスにマウントする
 
 mount_dir_1 = "/home/daytona/volume"
 
@@ -52,9 +53,9 @@ params = CreateSandboxFromSnapshotParams(
 )
 sandbox = daytona.create(params)
 
-# sandboxでの作業が完了したら、削除できます
+# サンドボックスでの作業が完了したら、削除できます
 
-# volumeはsandboxが削除された後も永続化されます
+# ボリュームはサンドボックスが削除された後も持続します
 
 sandbox.delete()
 
@@ -69,20 +70,20 @@ import path from 'path'
 async function main() {
   const daytona = new Daytona()
 
-  // 新しいvolumeを作成するか、既存のものを取得する
+  // 新しいボリュームを作成するか、既存のものを取得する
   const volume = await daytona.volume.get('my-volume', true)
 
-  // volumeをsandboxにマウントする
+  // ボリュームをサンドボックスにマウントする
   const mountDir1 = '/home/daytona/volume'
 
   const sandbox1 = await daytona.create({
     language: 'typescript',
     volumes: [{ volumeId: volume.id, mountPath: mountDir1 }],
   })
-
-  // sandboxでの作業が完了したら、削除できます
-  // volumeはsandboxが削除された後も永続化されます
-  await daytona.delete(sandbox1)
+  
+  // サンドボックスでの作業が完了したら、削除できます
+  // ボリュームはサンドボックスが削除された後も持続します
+  await sandbox1.delete()
 }
 
 main()

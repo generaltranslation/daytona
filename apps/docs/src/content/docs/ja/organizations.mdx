@@ -2,12 +2,25 @@
 title: Organizations
 ---
 
-import { TabItem, Tabs } from '@astrojs/starlight/components'
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-DaytonaのOrganizationsは、リソースをグループ化し、他のユーザーと簡単に協力するための方法です。
-Organizationのユーザーは、権限に応じて、Sandboxes、Snapshots、Registriesなどの同じ主要リソースセットを表示・管理し、これらのリソースに対して同じクォータを消費します。
+DaytonaのOrganizationsは、リソースをグループ化し、コラボレーションを可能にするために使用されます。ユーザーは個人のPersonal Organizationで個別に作業することも、Collaborative Organizationで共同作業することもできます。
 
-Daytonaにサインアップした後、ユーザーにはPersonal Organizationが割り当てられます。このデフォルトのOrganizationは新しいメンバーを受け入れることができず、削除することもできません。独立した請求システムを持ち、最も一般的にはテスト環境として、またはソロ開発者によって使用されます。組織間の切り替えは、サイドバー上部のドロップダウンメニューからオプションを選択することで行います。
+### Personal vs Collaborative Organizations
+
+すべてのDaytonaユーザーは**Personal Organization**から始まり、これは個人使用や実験に最適です。**Collaborative Organizations**は手動で作成され、共有アクセスとコントロールを備えた会社全体でのコラボレーション用に設計されています。
+
+| 機能 | Personal Organization | Collaborative Organization |
+|--------|------------------------|--------------------|
+| **作成** | サインアップ時に自動 | ユーザーが手動で作成 |
+| **メンバー** | 単一ユーザーのみ | 複数ユーザー（招待ベース） |
+| **アクセス制御** | ロールや権限なし | リソースベースの詳細なAssignmentsを持つロール |
+| **請求** | 個人ユーザーに紐付け | チームメンバー間で共有 |
+| **使用例** | 個人テスト、小規模プロジェクト | 会社/チーム開発と本番環境 |
+| **クォータ範囲** | ユーザーごと | 全メンバー間で共有 |
+| **削除可能** | ❌ いいえ | ✅ はい（Ownerによる） |
+
+ユーザーは、サイドバーのドロップダウンを使用して、Personal OrganizationとCollaborative Organizationを切り替えることができます。各Organizationには独自のサンドボックス、APIキー、リソースクォータがあります。
 
 ## 組織の役割
 
@@ -34,14 +47,14 @@ _Invite Member_をクリックして、招待したいユーザーのメール�
 
 利用可能な**割り当て**のリストには以下が含まれます：
 
-| 割り当て                    | 説明                                                         |
-| ----------------------- | ------------------------------------------------------------------- |
-| **`Viewer (required)`** | 組織内のすべてのリソースへの読み取りアクセスを付与             |
-| **`Developer`**         | 組織内でサンドボックスとキーを作成する機能を付与 |
-| **`Sandboxes Admin`**   | 組織内のサンドボックスへの管理者アクセスを付与                |
-| **`Snapshots Admin`**   | 組織内のスナップショットへの管理者アクセスを付与                |
-| **`Registries Admin`**  | 組織内のレジストリへの管理者アクセスを付与               |
-| **`Super Admin`**       | 組織内のすべてのリソースへの完全なアクセスを付与             |
+| 割り当て | 説明 |
+|------------|-------------|
+| **`Viewer (required)`** | 組織内のすべてのリソースへの読み取りアクセスを付与します |
+| **`Developer`** | 組織内でサンドボックスとキーを作成する機能を付与します |
+| **`Sandboxes Admin`** | 組織内のサンドボックスへの管理者アクセスを付与します |
+| **`Snapshots Admin`** | 組織内のスナップショットへの管理者アクセスを付与します |
+| **`Registries Admin`** | 組織内のレジストリへの管理者アクセスを付与します |
+| **`Super Admin`** | 組織内のすべてのリソースへの完全なアクセスを付与します |
 
 ## 招待の管理
 
